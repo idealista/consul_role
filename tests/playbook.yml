@@ -1,0 +1,19 @@
+---
+- hosts: all
+  tasks:
+    - name: Set Vagrant Consul interface
+      set_fact:
+        consul_interface: "eth1"
+      when: ansible_user == "vagrant"
+
+- hosts: consul_agent
+  roles:
+    - node_exporter
+
+- hosts: all
+  roles:
+    - consul_agent-role
+  post_tasks:
+    - name: Install net-tools for testing purposes
+      apt:
+        name: net-tools

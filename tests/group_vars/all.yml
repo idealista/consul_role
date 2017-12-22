@@ -1,0 +1,32 @@
+---
+consul_server_nodes:
+  - server01
+  - server02
+  - server03
+consul_domain: test
+consul_datacenter: test
+
+consul_acl: true
+consul_acl_default_policy: deny
+
+## ACL for discovery synchronization between servers
+consul_acl_configuration_list:
+  Agent:
+    token_type: client
+    token: "{{ consul_acl_agent_token }}"
+    rules:
+      - node: ""
+        policy: write
+      - service: ""
+        policy: write
+  ## ACL for anonymous UI reading
+  Anonymous Token:
+    token_type: client
+    token: anonymous
+    rules:
+      - key: ""
+        policy: read
+      - node: ""
+        policy: read
+      - service: ""
+        policy: read

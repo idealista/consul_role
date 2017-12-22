@@ -1,0 +1,16 @@
+[Unit]
+Description=consul agent
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+Restart=on-failure
+ExecStart=/bin/sh -c "{{ consul_bindir }}/consul agent {% if consul_server %}-server{% endif %} {% if consul_ui %}-ui{% endif %} -config-dir {{ consul_configdir }} -data-dir {{ consul_datadir }} > {{ consul_logfile }} 2>&1"
+User={{ consul_user }}
+Group={{ consul_group }}
+ExecReload=/bin/kill -HUP $MAINPID
+KillSignal=SIGTERM
+PIDFile=/run/consul/consul.pid
+
+[Install]
+WantedBy=multi-user.target

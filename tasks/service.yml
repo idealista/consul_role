@@ -1,0 +1,7 @@
+---
+- name: Register systemd service
+  systemd:
+    name: consul
+    enabled: true
+    daemon_reload: true
+    state: started

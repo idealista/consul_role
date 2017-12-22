@@ -1,0 +1,15 @@
+---
+- name: Consul | Register services
+  consul:
+    service_name: "{{ item.name }}"
+    service_port: "{{ item.port }}"
+    service_address: "{{ item.service_address | default (omit) }}" # In case the service is not in the local host
+    http: "{{ item.http | default (omit) }}" # HTTP endpoin health check. Requires interval.
+    script: "{{ item.script | default (omit) }}" # Script/command to check the health of the service. Requires interval.
+    interval: "{{ item.interval | default (omit) }}" # Interval between checks.
+    token: "{{ consul_acl_agent_token }}"
+  notify: restart consul
+  # We set this because of idempotency issues https://github.com/ansible/ansible-modules-extras/issues/1316
+  changed_when: false
+  with_items:
+    - "{{ consul_services_register }}"

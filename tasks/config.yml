@@ -1,0 +1,21 @@
+---
+- name: Consul | Template out config
+  template:
+    src: "{{ consul_configuration_template_path }}"
+    dest: "{{ consul_configdir }}/consul.json"
+    owner: "{{ consul_user }}"
+    group: "{{ consul_group }}"
+  notify: restart consul
+
+- name: Consul | Copy logrotate conf
+  template:
+    src: "{{ consul_logrotate_template_path }}"
+    dest: /etc/logrotate.d/consul
+    mode: 0644
+
+- name: Consul | Copy consul.service file
+  template:
+    src: "{{ consul_service_template_path }}"
+    dest: /etc/systemd/system/consul.service
+    mode: 0755
+  notify: restart consul

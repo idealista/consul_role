@@ -1,0 +1,29 @@
+---
+- name: Consul | Install
+  include: install.yml
+  tags:
+    - install
+
+- name: Consul | Configure
+  include: config.yml
+  tags:
+    - configure
+
+- name: Consul | Service
+  include: service.yml
+  tags:
+    - service
+
+- name: Consul | Consul ACL
+  include: consul_acl.yml
+  when: consul_acl
+  tags:
+    - configure
+    - acl
+
+- name: Consul | Consul services registration
+  include: consul_services_registration.yml
+  when: consul_agent_services and consul_agent
+  tags:
+    - configure
+    - services
