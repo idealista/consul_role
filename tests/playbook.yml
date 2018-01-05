@@ -12,7 +12,7 @@
 
 - hosts: all
   roles:
-    - consul_agent-role
+    - consul-role
   post_tasks:
     - name: Install net-tools for testing purposes
       apt:
