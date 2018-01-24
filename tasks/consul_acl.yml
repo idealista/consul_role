@@ -22,7 +22,10 @@
 
 - name: Consul | Install consul_acl prerequisites
   apt:
-    name: python-pip
+    name: "{{ item }}"
+  with_items:
+    - python-pip
+    - openssl
 
 - name: Consul | Install consul_acl Python prerequisites
   pip:
