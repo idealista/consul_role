@@ -14,3 +14,15 @@
   changed_when: false
   with_items:
     - "{{ consul_services_register }}"
+
+# Temporary, until consul state=absent is fixed
+- name: Consul | De-register services
+  uri:
+    url: "http://localhost:8500/v1/agent/service/deregister/{{ item.name }}"
+    method: PUT
+    headers:
+      X-Consul-Token: "{{ consul_acl_agent_token }}"
+    validate_certs: no
+  with_items:
+    - "{{ consul_services_register }}"
+  when: item.state is defined and item.state == "absent"
