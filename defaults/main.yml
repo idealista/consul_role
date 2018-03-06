@@ -1,5 +1,5 @@
 ---
-consul_version: 1.0.2
+consul_version: 1.0.6
 
 consul_user: consul
 consul_group: consul
