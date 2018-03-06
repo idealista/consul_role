@@ -10,6 +10,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ### Changed
 - *[#9](https://github.com/idealista/consul-role/issues/9) ACL files have now more restricted permissions. Tasks with token has no_log now* @jnogol
+- *Update Consul version to 1.0.6* @jnogol
 
 ## [1.0.1](https://github.com/idealista/consul-role/tree/1.0.1)
 ## [Full Changelog](https://github.com/idealista/consul-role/compare/1.0.0...1.0.1)
