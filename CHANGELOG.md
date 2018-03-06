@@ -5,8 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/consul-role/tree/develop)
 
-## [1.0.2](https://github.com/idealista/consul-role/tree/1.0.2)
-## [Full Changelog](https://github.com/idealista/consul-role/compare/1.0.1...1.0.2)
+## [1.1.0](https://github.com/idealista/consul-role/tree/1.1.0)
+## [Full Changelog](https://github.com/idealista/consul-role/compare/1.0.1...1.1.0)
 ### Added
 - *[#4](https://github.com/idealista/consul-role/issues/4) Services can be tagged during registration* @jnogol
 - *[#5](https://github.com/idealista/consul-role/issues/5) Services can be now deregistered* @jnogol
