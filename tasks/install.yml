@@ -2,7 +2,6 @@
 - name: Consul | Install dependencies
   apt:
     pkg: "{{ item }}"
-    state: installed
     update_cache: true
     cache_valid_time: 600
   with_items: "{{ consul_required_libs }}"
@@ -15,8 +14,7 @@
   user:
     name: "{{ consul_user }}"
     group: "{{ consul_group }}"
-    home: /bin/false
-    createhome: yes
+    createhome: no
 
 - name: Consul | Ensure consul skeleton path
   file:
