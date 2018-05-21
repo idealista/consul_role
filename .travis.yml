@@ -1,0 +1,27 @@
+---
+language: python
+python: "2.7.13"
+group: deprecated-2017Q4
+
+sudo: required
+
+env:
+  - ansible_version: 2.4.0.0
+  - ansible_version: 2.4.1.0
+  - ansible_version: 2.4.2.0
+  - ansible_version: 2.4.3.0
+  - ansible_version: 2.5.0.0
+
+services:
+  - docker
+
+install:
+  - pip install ansible==${ansible_version}
+  - pip install molecule==1.25.0
+  - pip install ansible-lint==3.4.20
+  - pip install docker
+script:
+  - molecule test --driver docker
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
