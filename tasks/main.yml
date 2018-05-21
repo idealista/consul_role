@@ -1,28 +1,34 @@
 ---
+- name: Consul | Check
+  import_tasks: check.yml
+  tags:
+    - check
+
 - name: Consul | Install
-  include: install.yml
+  import_tasks: install.yml
   tags:
     - install
+  when: consul_installed_version.rc != 0 or consul_force_install or consul_version not in consul_installed_version.stdout
 
 - name: Consul | Configure
-  include: config.yml
+  import_tasks: config.yml
   tags:
     - configure
 
 - name: Consul | Service
-  include: service.yml
+  import_tasks: service.yml
   tags:
     - service
 
 - name: Consul | Consul ACL
-  include: consul_acl.yml
+  import_tasks: consul_acl.yml
   when: consul_acl
   tags:
     - configure
     - acl
 
 - name: Consul | Consul services registration
-  include: consul_services_registration.yml
+  import_tasks: consul_services_registration.yml
   when: consul_agent_services and consul_agent
   tags:
     - configure
