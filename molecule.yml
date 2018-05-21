@@ -15,8 +15,9 @@ molecule:
     - .vagrant
     - .molecule
 
-  # directory to look for testinfra tests
-  testinfra_dir: tests
+  # directory to look for goss tests
+  goss_dir: tests/goss
+  goss_playbook: verifier.yml
 
   # directory containing group_vars to use with ansible
   group_vars: ../tests/group_vars
@@ -46,7 +47,7 @@ vagrant:
     - name: virtualbox
       type: virtualbox
       options:
-        memory: 1024
+        memory: 512
         cpus: 1
 
   instances:
@@ -145,7 +146,4 @@ docker:
       network_mode: consul-network
 
 verifier:
-  name: testinfra
-  options:
-    connection: ansible
-    ansible-inventory: .molecule/ansible_inventory
+  name: goss
