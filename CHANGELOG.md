@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/consul-role/tree/develop)
+### Added
+- *[#8](https://github.com/idealista/consul-role/issues/8) Add Travis integration* @jnogol
+- *Installation & version check* @jnogol
+
+### Changed
+- *Migrate tests to Goss* @jnogol
+
+### Fixed
+- *Servers can be set up without ACL* @jnogol
+
+## [1.1.1](https://github.com/idealista/consul-role/tree/1.1.1)
+## [Full Changelog](https://github.com/idealista/consul-role/compare/1.1.0...1.1.1)
 ### Fixed
 - *[#13](https://github.com/idealista/consul-role/issues/13) Wrong Consul user home creation* @jnogol
 
