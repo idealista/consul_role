@@ -117,33 +117,33 @@ docker:
       command: '/lib/systemd/systemd'
       network_mode: consul-network
 
-    - name: server02
-      hostname: server02
-      ansible_groups:
-        - consul_server
-      image: geerlingguy/docker-debian9-ansible
-      image_version: latest
-      privileged: True
-      cap_add:
-        - SYS_ADMIN
-      volume_mounts:
-        - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
-      command: '/lib/systemd/systemd'
-      network_mode: consul-network
-
-    - name: server03
-      hostname: server03
-      ansible_groups:
-        - consul_server
-      image: geerlingguy/docker-debian9-ansible
-      image_version: latest
-      privileged: True
-      cap_add:
-        - SYS_ADMIN
-      volume_mounts:
-        - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
-      command: '/lib/systemd/systemd'
-      network_mode: consul-network
+    # - name: server02
+    #   hostname: server02
+    #   ansible_groups:
+    #     - consul_server
+    #   image: geerlingguy/docker-debian9-ansible
+    #   image_version: latest
+    #   privileged: True
+    #   cap_add:
+    #     - SYS_ADMIN
+    #   volume_mounts:
+    #     - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+    #   command: '/lib/systemd/systemd'
+    #   network_mode: consul-network
+    #
+    # - name: server03
+    #   hostname: server03
+    #   ansible_groups:
+    #     - consul_server
+    #   image: geerlingguy/docker-debian9-ansible
+    #   image_version: latest
+    #   privileged: True
+    #   cap_add:
+    #     - SYS_ADMIN
+    #   volume_mounts:
+    #     - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+    #   command: '/lib/systemd/systemd'
+    #   network_mode: consul-network
 
 verifier:
   name: goss
