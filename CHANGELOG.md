@@ -5,7 +5,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/consul-role/tree/develop)
 ### Added
-- *[#8](https://github.com/idealista/consul-role/issues/8) Add Travis integration* @jnogol
 - *Installation & version check* @jnogol
 
 ### Changed
