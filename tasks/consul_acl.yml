@@ -1,5 +1,5 @@
 ---
-- name: Add acl configuration master
+- name: Consul | Add acl configuration master
   template:
     src: consul.master.j2
     dest: "{{ consul_configdir }}/master.json"
@@ -10,7 +10,7 @@
   no_log: true
   when: consul_server
 
-- name: Add acl configuration client
+- name: Consul | Add acl configuration client
   template:
     src: consul.client.j2
     dest: "{{ consul_configdir }}/client.json"
@@ -21,23 +21,19 @@
   no_log: true
   when: consul_agent
 
-- name: ACLs system needs to be enabled prior to apply them
+- name: Consul | ACLs system needs to be enabled prior to apply them
   meta: flush_handlers
+  when: consul_acl # This is to avoid triggering handlers unnecessarily
 
 - name: Consul | Install consul_acl prerequisites
   apt:
     name: "{{ item }}"
-  with_items:
-    - python-pip
-    - openssl
+  with_items: "{{ consul_acl_required_libs }}"
 
 - name: Consul | Install consul_acl Python prerequisites
   pip:
     name: "{{ item }}"
-  with_items:
-    - python-consul
-    - pyhcl
-    - requests
+  with_items: "{{ consul_acl_python_required_packages }}"
 
 - name: Consul | Wait for Consul to start up
   wait_for:

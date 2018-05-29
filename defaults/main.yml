@@ -1,16 +1,20 @@
 ---
-consul_version: 1.0.6
+consul_version: 1.1.0
 
 consul_user: consul
 consul_group: consul
 consul_nodename: "{{ ansible_nodename }}"
 
-## List with the hosts acting as servers
-consul_server_nodes:
+consul_force_install: false
 
-consul_bindir: /opt/consul/bin
-consul_configdir: /opt/consul/consul.d
-consul_datadir: /opt/consul/data
+## List with the hosts acting as servers
+# consul_server_nodes:
+
+consul_basedir: /opt/consul
+
+consul_bindir: "{{ consul_basedir }}/bin"
+consul_configdir: "{{ consul_basedir }}/consul.d"
+consul_datadir: "{{ consul_basedir }}/data"
 consul_syslog: false
 
 consul_logdir: /var/log/consul
@@ -42,9 +46,9 @@ consul_acl_down_policy: extend-cache
 consul_acl_master_token: master
 consul_acl_agent_token: agent
 
-consul_acl_configuration_list:
-  ## ACL for discovery synchronization between servers
-  # Example
+## ACL for discovery synchronization between servers
+# Example
+# consul_acl_configuration_list:
   # Agent:
   #   token_type: client
   #   token: "{{ consul_acl_agent_token }}"

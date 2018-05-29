@@ -6,17 +6,17 @@
     cache_valid_time: 600
   with_items: "{{ consul_required_libs }}"
 
-- name: Consul | Ensure consul group
+- name: Consul | Ensure Consul group
   group:
     name: "{{ consul_group }}"
 
-- name: Consul | Ensure consul user
+- name: Consul | Ensure Consul user
   user:
     name: "{{ consul_user }}"
     group: "{{ consul_group }}"
     createhome: no
 
-- name: Consul | Ensure consul skeleton path
+- name: Consul | Ensure Consul skeleton path
   file:
     path: "{{ item }}"
     state: directory
@@ -28,14 +28,13 @@
     - "{{ consul_datadir }}"
     - "{{ consul_logdir }}"
 
-- name: Consul | Download and extract consul
+- name: Consul | Download and extract Consul
   unarchive:
     src: "{{ consul_url }}"
     dest: "{{ consul_bindir }}"
     owner: "{{ consul_user }}"
     group: "{{ consul_group }}"
     remote_src: yes
-    creates: "{{ consul_bindir }}/consul"
 
 - name: Consul | Link binary
   file:
