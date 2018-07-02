@@ -35,7 +35,7 @@ consul_service_template_path: consul.service.j2
 # Consul nodes behaviour #
 consul_agent: false
 consul_server: false
-consul_ui : false
+consul_ui: false
 
 # ACLs #
 consul_acl: false
