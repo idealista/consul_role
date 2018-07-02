@@ -5,6 +5,7 @@
   changed_when: false
   ignore_errors: true
   register: consul_installed_version
+  check_mode: no
 
 - name: Consul | Set consul_installed_version fact
   set_fact:
