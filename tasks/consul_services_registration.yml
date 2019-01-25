@@ -12,7 +12,7 @@
   notify: restart consul
   # We set this because of idempotency issues https://github.com/ansible/ansible-modules-extras/issues/1316
   changed_when: false
-  # no_log: true
+  no_log: true
   with_items:
     - "{{ consul_services_register }}"
 
@@ -25,6 +25,6 @@
       X-Consul-Token: "{{ consul_acl_agent_token }}"
     validate_certs: no
   when: item.state is defined and item.state == "absent"
-  # no_log: true
+  no_log: true
   with_items:
     - "{{ consul_services_register }}"
