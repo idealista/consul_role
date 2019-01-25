@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/consul-role/tree/develop)
+### Fixed
+- *[#26](https://github.com/idealista/consul-role/issues/26) Fixing script health check* @dortegau
 
 ## [1.2.2](https://github.com/idealista/consul-role/tree/1.2.2)
 ## [Full Changelog](https://github.com/idealista/consul-role/compare/1.2.1...1.2.2)

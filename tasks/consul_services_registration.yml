@@ -2,7 +2,7 @@
 - name: Consul | Register services
   consul:
     service_name: "{{ item.name }}"
-    service_port: "{{ item.port }}"
+    service_port: "{{ item.port | default (omit) }}"
     service_address: "{{ item.service_address | default (omit) }}" # In case the service is not in the local host
     http: "{{ item.http | default (omit) }}" # HTTP endpoint health check. Requires interval.
     script: "{{ item.script | default (omit) }}" # Script/command to check the health of the service. Requires interval.
@@ -12,7 +12,7 @@
   notify: restart consul
   # We set this because of idempotency issues https://github.com/ansible/ansible-modules-extras/issues/1316
   changed_when: false
-  no_log: true
+  # no_log: true
   with_items:
     - "{{ consul_services_register }}"
 
@@ -25,6 +25,6 @@
       X-Consul-Token: "{{ consul_acl_agent_token }}"
     validate_certs: no
   when: item.state is defined and item.state == "absent"
-  no_log: true
+  # no_log: true
   with_items:
     - "{{ consul_services_register }}"

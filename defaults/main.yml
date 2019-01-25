@@ -36,12 +36,16 @@ consul_service_template_path: consul.service.j2
 consul_agent: false
 consul_server: false
 consul_ui: false
+# Check this blog post before enable this variable
+# https://www.hashicorp.com/blog/protecting-consul-from-rce-risk-in-specific-configurations
+consul_enable_script_check: false 
 
 # ACLs #
 consul_acl: false
 consul_acl_datacenter: "{{ consul_datacenter }}"
 consul_acl_default_policy: allow
 consul_acl_down_policy: extend-cache
+
 ## Recommended to generate these values with uuidgen
 consul_acl_master_token: master
 consul_acl_agent_token: agent
