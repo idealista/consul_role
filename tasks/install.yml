@@ -1,10 +1,9 @@
 ---
 - name: Consul | Install dependencies
   apt:
-    pkg: "{{ item }}"
+    pkg: "{{ consul_required_libs }}"
     update_cache: true
     cache_valid_time: 600
-  with_items: "{{ consul_required_libs }}"
 
 - name: Consul | Ensure Consul group
   group:
