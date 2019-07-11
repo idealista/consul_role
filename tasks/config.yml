@@ -17,5 +17,7 @@
   template:
     src: "{{ consul_service_template_path }}"
     dest: /etc/systemd/system/consul.service
-    mode: 0755
+    mode: 0644
+    owner: root
+    group: root
   notify: restart consul
