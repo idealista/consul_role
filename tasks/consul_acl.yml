@@ -27,13 +27,11 @@
 
 - name: Consul | Install consul_acl prerequisites
   apt:
-    name: "{{ item }}"
-  with_items: "{{ consul_acl_required_libs }}"
+    name: "{{ consul_acl_required_libs }}"
 
 - name: Consul | Install consul_acl Python prerequisites
   pip:
-    name: "{{ item }}"
-  with_items: "{{ consul_acl_python_required_packages }}"
+    name: "{{ consul_acl_python_required_packages }}"
 
 - name: Consul | Wait for Consul to start up
   wait_for:
