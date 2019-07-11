@@ -17,6 +17,7 @@
   template:
     src: "{{ consul_service_template_path }}"
     dest: /etc/systemd/system/consul.service
+    trim_blocks: false
     mode: 0644
     owner: root
     group: root
