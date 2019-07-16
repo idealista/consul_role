@@ -5,11 +5,11 @@ After=network-online.target
 
 [Service]
 Restart=on-failure
-ExecStart=/bin/sh -c "{{ consul_bindir }}/consul agent {% if consul_server %}-server{% endif %} {% if consul_ui %}-ui{% endif %} -config-dir {{ consul_configdir }} -data-dir {{ consul_datadir }} {% if consul_enable_script_check %}-enable-script-checks{% endif %} > {{ consul_logfile }} 2>&1"
+ExecStart={{ consul_bindir }}/consul agent {% if consul_server %}-server{% endif %} {% if consul_ui %}-ui{% endif %} -config-dir {{ consul_configdir }} {% if consul_enable_script_check %}-enable-script-checks{% endif %}
 User={{ consul_user }}
 Group={{ consul_group }}
-ExecReload=/bin/kill -HUP $MAINPID
-KillSignal=SIGTERM
+ExecReload={{ consul_bindir }}/consul reload
+KillMode=process
 PIDFile=/run/consul/consul.pid
 
 [Install]
