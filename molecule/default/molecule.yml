@@ -1,0 +1,61 @@
+---
+dependency:
+  name: galaxy
+
+driver:
+  name: docker
+
+lint:
+  name: yamllint
+
+platforms:
+  - name: consulserver
+    hostname: consulserver
+    image: debian:stretch-slim
+    networks:
+      - name: consul_network
+    purge_networks: true
+    stop_signal: 'RTMIN+3'
+    privileged: true
+    volumes:
+      - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+    capabilities:
+      - SYS_ADMIN
+    published_ports:
+      - "8500:8500"
+    groups:
+      - consul
+      - server
+    command: '/lib/systemd/systemd'
+
+  - name: consulagent
+    hostname: consulagent
+    image: debian:stretch-slim
+    networks:
+      - name: consul_network
+    purge_networks: true
+    stop_signal: 'RTMIN+3'
+    privileged: true
+    volumes:
+      - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+    capabilities:
+      - SYS_ADMIN
+    groups:
+      - consul
+      - agent
+    command: '/lib/systemd/systemd'
+
+
+provisioner:
+  name: ansible
+  playbooks:
+    create: create.yml
+  inventory:
+    links:
+      group_vars: ./group_vars
+
+verifier:
+  name: goss
+  enabled: true
+  lint:
+    name: yamllint

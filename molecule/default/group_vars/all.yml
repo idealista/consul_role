@@ -1,8 +1,11 @@
 ---
+consul_version: 1.2.3
+
+consul_interface: eth0
+
 consul_server_nodes:
-  - server01
-  - server02
-  - server03
+  - consulserver
+
 consul_domain: test
 consul_datacenter: test
 
