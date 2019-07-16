@@ -5,6 +5,17 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/consul-role/tree/develop)
 
+## [1.2.4](https://github.com/idealista/consul-role/tree/1.2.4)
+## [Full Changelog](https://github.com/idealista/consul-role/compare/1.2.3...1.2.4)
+### Fixed
+- *[#30](https://github.com/idealista/consul-role/issues/30) Remove execution permission on service file* @miguel-chacon
+- *[#8](https://github.com/idealista/consul-role/issues/8) Setup Travis CI* @miguel-chacon
+- *Deregister agent before service stop* @miguel-chacon
+### Changed
+- *Support up to Consul v1.4 because of non ACLs retrocompability* [Consul Changelog](https://github.com/hashicorp/consul/blob/master/CHANGELOG.md#140-november-14-2018) @miguel-chacon
+- *Update tests to Molecule 2* @miguel-chacon
+
+
 ## [1.2.3](https://github.com/idealista/consul-role/tree/1.2.3)
 ## [Full Changelog](https://github.com/idealista/consul-role/compare/1.2.2...1.2.3)
 ### Fixed
