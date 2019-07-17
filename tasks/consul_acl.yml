@@ -23,17 +23,15 @@
 
 - name: Consul | ACLs system needs to be enabled prior to apply them
   meta: flush_handlers
-  when: consul_acl # This is to avoid triggering handlers unnecessarily
+  when: consul_acl  # This is to avoid triggering handlers unnecessarily
 
 - name: Consul | Install consul_acl prerequisites
   apt:
-    name: "{{ item }}"
-  with_items: "{{ consul_acl_required_libs }}"
+    name: "{{ consul_acl_required_libs }}"
 
 - name: Consul | Install consul_acl Python prerequisites
   pip:
-    name: "{{ item }}"
-  with_items: "{{ consul_acl_python_required_packages }}"
+    name: "{{ consul_acl_python_required_packages }}"
 
 - name: Consul | Wait for Consul to start up
   wait_for:

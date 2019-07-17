@@ -1,6 +1,9 @@
 ---
 consul_agent: true
+# for goss testing
+consul_server: false
 consul_agent_services: true
+consul_ui: true
 consul_enable_script_check: true
 
 consul_services_register:

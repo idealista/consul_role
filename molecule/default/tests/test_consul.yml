@@ -26,10 +26,11 @@ group:
     exists: true
 
 port:
-  {% if consul_server %}tcp:8300:
+  {% if consul_server -%}
+  tcp:8300:
     listening: true
-  {% endif %}
-{% if consul_server %}tcp6{% elif consul_agent %}tcp{% endif %}:8500:
+  {% endif -%}
+  tcp6:8500:
     listening: true
   tcp:8600:
     listening: true
@@ -43,7 +44,7 @@ http:
 {% endif %}
 
 command:
-  consul --version:
+  consul --version| head -n 1:
     exit-status: 0
     stdout:
-    - Consul v{{ consul_version }}
+      - Consul v{{ consul_version }}
