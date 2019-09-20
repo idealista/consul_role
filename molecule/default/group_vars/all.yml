@@ -1,4 +1,6 @@
 ---
+consul_version: 1.2.3
+
 consul_interface: eth0
 
 consul_server_nodes:
