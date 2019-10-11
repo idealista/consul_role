@@ -5,6 +5,7 @@ consul_user: consul
 consul_group: consul
 consul_nodename: "{{ ansible_nodename }}"
 
+consul_install: true
 consul_force_install: false
 
 ## List with the hosts acting as servers

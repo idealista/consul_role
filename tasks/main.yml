@@ -4,11 +4,17 @@
   tags:
     - check
 
-- name: Consul | Install
-  import_tasks: install.yml
+- name: Consul | Install requirements for consul
+  import_tasks: install_consul_req.yml
   tags:
     - install
   when: consul_installed_version.rc != 0 or consul_force_install or consul_version not in consul_installed_version.stdout
+
+- name: Consul | Install consul
+  import_tasks: install_consul.yml
+  tags:
+    - install
+  when: consul_install and (consul_installed_version.rc != 0 or consul_force_install or consul_version not in consul_installed_version.stdout)
 
 - name: Consul | Configure
   import_tasks: config.yml
