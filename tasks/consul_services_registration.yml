@@ -9,6 +9,7 @@
     interval: "{{ item.interval | default (omit) }}"  # Interval between checks.
     tags: "{{ item.tags | default (omit) }}"
     token: "{{ consul_acl_agent_token }}"
+    host: "{{ consul_ip }}"
   notify: restart consul
   # We set this because of idempotency issues https://github.com/ansible/ansible-modules-extras/issues/1316
   changed_when: false
