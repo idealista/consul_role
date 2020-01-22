@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/consul-role/tree/develop)
+
+## [1.2.5](https://github.com/idealista/consul-role/tree/1.2.5)
+## [Full Changelog](https://github.com/idealista/consul-role/compare/1.2.4...1.2.5)
 ### Fixed
 - *Upgraded default version to support log_file config option* @miguel-chacon
 - *[#38](https://github.com/idealista/consul-role/issues/38) Register service error* @miguel-chacon
