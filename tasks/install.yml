@@ -5,6 +5,10 @@
     update_cache: true
     cache_valid_time: 600
 
+- name: Consul | Install python dependencies
+  pip:
+    name: "{{ consul_required_python_libs }}"
+
 - name: Consul | Ensure Consul group
   group:
     name: "{{ consul_group }}"
