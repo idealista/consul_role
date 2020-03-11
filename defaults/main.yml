@@ -69,3 +69,5 @@ consul_services_register:  # Example:
 #   port: 9100
 #   http: "http://localhost:9100"
 #   interval: "60s"
+
+consul_no_log: true
