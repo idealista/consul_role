@@ -7,7 +7,7 @@
     group: "{{ consul_group }}"
     mode: 0640
   notify: restart consul
-  no_log: true
+  no_log: "{{ consul_no_log }}"
   when: consul_server
 
 - name: Consul | Add acl configuration client
@@ -18,7 +18,7 @@
     group: "{{ consul_group }}"
     mode: 0640
   notify: restart consul
-  no_log: true
+  no_log: "{{ consul_no_log }}"
   when: consul_agent
 
 - name: Consul | ACLs system needs to be enabled prior to apply them
@@ -48,4 +48,4 @@
     host: "{{ consul_server_nodes | first }}"
   notify: restart consul
   with_dict: "{{ consul_acl_configuration_list }}"
-  no_log: true
+  no_log: "{{ consul_no_log }}"
