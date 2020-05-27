@@ -10,7 +10,7 @@ User={{ consul_user }}
 Group={{ consul_group }}
 ExecReload={{ consul_bindir }}/consul reload
 KillMode=process
-PIDFile=/run/consul/consul.pid
+PrivateTmp=true
 
 [Install]
 WantedBy=multi-user.target
