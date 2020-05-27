@@ -1,4 +1,4 @@
-![Logo](https://raw.githubusercontent.com/idealista/consul-role/master/logo.gif)
+![Logo](https://raw.githubusercontent.com/idealista/consul_role/master/logo.gif)
 
 # Consul Ansible role
 
@@ -31,7 +31,7 @@ For testing purposes, [Molecule](https://molecule.readthedocs.io/) with [Vagrant
 Create or add to your roles dependency file (e.g requirements.yml):
 
 ``` yml
-- src: idealista.consul-role
+- src: idealista.consul_role
   version: 1.0.0
   name: consul
 ```
@@ -57,7 +57,7 @@ Look to the defaults properties file (`defaults/main.yml`) to see the possible c
 
 ## Testing
 
-Execute ``` molecule test ``` under consul-role folder to run the automated tests suite.
+Execute ``` molecule test ``` under consul_role folder to run the automated tests suite.
 
 ## Built With
 
@@ -65,7 +65,7 @@ Execute ``` molecule test ``` under consul-role folder to run the automated test
 
 ## Versioning
 
-For the versions available, see the [tags on this repository](https://github.com/idealista/consul-role/tags).
+For the versions available, see the [tags on this repository](https://github.com/idealista/consul_role/tags).
 
 Additionaly you can see what change in each version in the [CHANGELOG.md](CHANGELOG.md) file.
 
@@ -73,7 +73,7 @@ Additionaly you can see what change in each version in the [CHANGELOG.md](CHANGE
 
 * **Idealista** - *Work with* - [idealista](https://github.com/idealista)
 
-See also the list of [contributors](https://github.com/idealista/consul-role/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/idealista/consul_role/contributors) who participated in this project.
 
 ## License
 

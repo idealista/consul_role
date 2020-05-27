@@ -6,7 +6,7 @@
 - hosts: consul
   gather_facts: true
   roles:
-    - consul-role
+    - consul_role
   post_tasks:
     - name: Install net-tools for testing purposes
       apt:
