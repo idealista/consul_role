@@ -69,3 +69,21 @@ consul_services_register:  # Example:
 #   port: 9100
 #   http: "http://localhost:9100"
 #   interval: "60s"
+
+consul_required_libs:
+  - unzip
+  - ca-certificates
+  - python-pip
+
+consul_required_python_libs:
+  - python-consul
+
+consul_url: "https://releases.hashicorp.com/consul/{{ consul_version }}/{{ consul_package }}"
+consul_package: "consul_{{ consul_version }}_linux_amd64.zip"
+
+consul_acl_required_libs:
+  - openssl
+
+consul_acl_python_required_packages:
+  - pyhcl
+  - requests
