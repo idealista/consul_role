@@ -32,7 +32,7 @@ Create or add to your roles dependency file (e.g requirements.yml):
 
 ``` yml
 - src: idealista.consul_role
-  version: 2.3.0
+  version: 1.3.0
   name: consul
 ```
 
