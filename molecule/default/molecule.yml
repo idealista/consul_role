@@ -5,13 +5,14 @@ dependency:
 driver:
   name: docker
 
-lint:
-  name: yamllint
+lint: |
+  yamllint .
+  ansible-lint .
 
 platforms:
   - name: consulserver
     hostname: consulserver
-    image: debian:stretch-slim
+    image: ${MOLECULE_DISTRO:-debian:buster-slim}
     networks:
       - name: consul_network
     purge_networks: true
@@ -19,6 +20,9 @@ platforms:
     privileged: true
     volumes:
       - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+    tmpfs:
+      - /run
+      - /run/lock
     capabilities:
       - SYS_ADMIN
     published_ports:
@@ -30,12 +34,15 @@ platforms:
 
   - name: consulagent
     hostname: consulagent
-    image: debian:stretch-slim
+    image: ${MOLECULE_DISTRO:-debian:buster-slim}
     networks:
       - name: consul_network
     purge_networks: true
     stop_signal: 'RTMIN+3'
     privileged: true
+    tmpfs:
+      - /run
+      - /run/lock
     volumes:
       - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
     capabilities:
@@ -45,17 +52,11 @@ platforms:
       - agent
     command: '/lib/systemd/systemd'
 
-
 provisioner:
   name: ansible
-  playbooks:
-    create: create.yml
   inventory:
     links:
       group_vars: ./group_vars
 
 verifier:
-  name: goss
-  enabled: true
-  lint:
-    name: yamllint
+  name: ansible

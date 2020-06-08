@@ -1,7 +1,7 @@
 <!--
 
 Have you read Idealista's Code of Conduct? By filling an Issue, you are expected to comply with it,
- including treating everyone with respect: https://github.com/idealista/consul-role/blob/master/CODE_OF_CONDUCT.md
+ including treating everyone with respect: https://github.com/idealista/consul_role/blob/master/CODE_OF_CONDUCT.md
 
 -->
 

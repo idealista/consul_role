@@ -1,4 +1,4 @@
-![Logo](https://raw.githubusercontent.com/idealista/consul-role/master/logo.gif)
+![Logo](https://raw.githubusercontent.com/idealista/consul_role/master/logo.gif)
 
 # Consul Ansible role
 
@@ -21,18 +21,18 @@ These instructions will get you a copy of the role for your Ansible Playbook. On
 
 ### Prerequisities
 
-Ansible 2.4.0.0 version installed.
+Ansible 2.9.x.x version installed.
 Inventory destination should be a Debian environment.
 
-For testing purposes, [Molecule](https://molecule.readthedocs.io/) with [Vagrant](https://www.vagrantup.com/) as driver (with [landrush](https://github.com/vagrant-landrush/landrush) plugin) and [VirtualBox](https://www.virtualbox.org/) as provider.
+For testing purposes, [Molecule](https://molecule.readthedocs.io/) with [Docker](https://www.docker.com/) as driver.
 
 ### Installing
 
 Create or add to your roles dependency file (e.g requirements.yml):
 
 ``` yml
-- src: idealista.consul-role
-  version: 1.0.0
+- src: idealista.consul_role
+  version: 1.3.0
   name: consul
 ```
 
@@ -57,15 +57,27 @@ Look to the defaults properties file (`defaults/main.yml`) to see the possible c
 
 ## Testing
 
-Execute ``` molecule test ``` under consul-role folder to run the automated tests suite.
+```sh
+$ pipenv sync
+```
+
+For more information read the [pipenv docs](https://docs.pipenv.org/).
+
+### Testing
+
+```sh
+$ pipenv run molecule test 
+```
 
 ## Built With
 
-![Ansible](https://img.shields.io/badge/ansible-2.4.0.0-green.svg)
+![Ansible](https://img.shields.io/badge/ansible-2.9.0-green.svg)
+![Molecule](https://img.shields.io/badge/molecule-3.0.4-green.svg)
+![Goss](https://img.shields.io/badge/goss-0.3.11-green.svg)
 
 ## Versioning
 
-For the versions available, see the [tags on this repository](https://github.com/idealista/consul-role/tags).
+For the versions available, see the [tags on this repository](https://github.com/idealista/consul_role/tags).
 
 Additionaly you can see what change in each version in the [CHANGELOG.md](CHANGELOG.md) file.
 
@@ -73,7 +85,7 @@ Additionaly you can see what change in each version in the [CHANGELOG.md](CHANGE
 
 * **Idealista** - *Work with* - [idealista](https://github.com/idealista)
 
-See also the list of [contributors](https://github.com/idealista/consul-role/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/idealista/consul_role/contributors) who participated in this project.
 
 ## License
 
