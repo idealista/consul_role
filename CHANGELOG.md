@@ -4,8 +4,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/consul_role/tree/develop)
+
+## [1.3.0](https://github.com/idealista/consul_role/tree/1.3.0)
+## [Full Changelog](https://github.com/idealista/consul_role/compare/1.2.5...1.3.0)
 ### Changed
-- *[#46](https://github.com/idealista/consul_role/issues/46) Updated Ansible, molecule, goss; added buster testin; updated Travis configg* @frantsao
+- *[#46](https://github.com/idealista/consul_role/issues/46) Updated Ansible, molecule, goss; added buster testin; updated Travis config* @frantsao
 
 ## [1.2.5](https://github.com/idealista/consul_role/tree/1.2.5)
 ## [Full Changelog](https://github.com/idealista/consul_role/compare/1.2.4...1.2.5)
