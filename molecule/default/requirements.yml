@@ -1,4 +1,4 @@
 ---
-- src: idealista.prometheus_node_exporter-role
-  version: 1.2.5
+- src: idealista.prometheus_node_exporter_role
+  version: 4.0.1
   name: node_exporter
