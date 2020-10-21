@@ -1,4 +1,10 @@
 ---
+- name: Consul | Service sanity healthcheck
+  include_tasks: service_healthcheck.yml
+  when: consul_service_sanity_healthcheck and (item.state is not defined or item.state != "absent")
+  with_items:
+    - "{{ consul_services_register }}"
+
 - name: Consul | Register services
   consul:
     service_name: "{{ item.name }}"

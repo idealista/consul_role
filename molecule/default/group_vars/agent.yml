@@ -9,7 +9,7 @@ consul_enable_script_check: true
 consul_services_register:
   - name: node exporter http
     port: 9100
-    http: "http://localhost:9100"
+    http: "http://localhost:9100/metrics"
     interval: "60s"
   - name: node exporter script
     script: "pidof node_exporter"
