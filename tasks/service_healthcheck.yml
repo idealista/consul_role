@@ -17,6 +17,7 @@
       command: "{{ item.script }}"
       register: service_healthy
       failed_when: service_healthy.rc != 0
+      changed_when: false
       when: "item.script is defined"
 
   rescue:
