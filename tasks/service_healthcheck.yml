@@ -1,0 +1,25 @@
+---
+- name: Consul | Check verify healthcheck parameters
+  fail:
+    msg: "Service {{ item.name }} must have set 'http' or 'script' fields."
+  when: "item.http is not defined and item.script is not defined"
+
+- name: Consul | Check service is healthy
+  block:
+    - name: Consul | Check that web server is available
+      uri:
+        url: "{{ item.http }}"
+        return_content: no
+        status_code: 200
+      when: "item.http is defined"
+
+    - name: Consul | Check that command exits successfully
+      command: "{{ item.script }}"
+      register: service_healthy
+      failed_when: service_healthy.rc != 0
+      when: "item.script is defined"
+
+  rescue:
+    - name: Consul | Healthcheck test failed
+      fail:
+        msg: 'Healthcheck for {{ item.name }} fails. Verify that the service is properly installed or that consul_services_register parameters are correct.'

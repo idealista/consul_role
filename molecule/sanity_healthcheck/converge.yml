@@ -1,0 +1,82 @@
+---
+- hosts: consulagent
+  roles:
+    - node_exporter
+
+- hosts: consul
+  gather_facts: true
+  tasks:
+  - block:
+    - name: "Try to apply role with not http or script parameters"
+      include_role:
+        name: consul_role
+      vars:
+        consul_services_register:
+        - name: node exporter http
+          port: 9100
+    rescue:
+      - set_fact:
+          role_error_params: true
+    always:
+    - name: Fail if no error raised
+      fail:
+        msg: "An error should've been raised by the role"
+      when: role_error_params is not defined
+
+  - block:
+      - name: "Try to apply role with bad configured webservice"
+        include_role:
+          name: consul_role
+        vars:
+          consul_services_register:
+          - name: node exporter http
+            port: 9100
+            http: "http://localhost:14/randomurl"
+            interval: "60s"
+    rescue:
+    - set_fact:
+        role_error_webservice: true
+    always:
+    - name: Fail if no error raised
+      fail:
+        msg: "An error should've been raised by the role"
+      when: role_error_webservice is not defined
+
+  - block:
+      - name: "Try to apply role with bad configured service"
+        include_role:
+          name: consul_role
+        vars:
+          consul_services_register:
+          - name: node exporter http
+            script: "command_dont_exists"
+            interval: "60s"
+    rescue:
+      - set_fact:
+          role_error_service: true
+    always:
+    - name: Fail if no error raised
+      fail:
+        msg: "An error should've been raised by the role"
+      when: role_error_service is not defined
+
+  - block:
+      - name: "Try to apply role with bad configured service with no sanity check"
+        include_role:
+          name: consul_role
+        vars:
+          consul_service_sanity_healthcheck: false
+          consul_services_register:
+          - name: node exporter http
+            script: "command_dont_exists"
+            interval: "60s"
+    rescue:
+      - set_fact:
+          role_error: true
+    always:
+    - name: Fail if no error raised
+      fail:
+        msg: "An error should've been raised by the role"
+      when: role_error is defined
+
+
