@@ -1,9 +1,13 @@
 ---
-- hosts: consulagent
+- hosts: consulserver
   roles:
     - node_exporter
 
-- hosts: consul
+- hosts: consulserver
+  roles:
+    - consul_role
+
+- hosts: consulagent
   gather_facts: true
   tasks:
   - block:
