@@ -64,7 +64,7 @@ consul_acl_agent_token: agent
 
 # Services #
 consul_agent_services: false
-consul_service_sanity_healthcheck: true
+consul_service_sanity_healthcheck: true  # Perform healthcheck on services priot to registration
 consul_services_register:  # Example:
 # - name: nodeexporter
 #   port: 9100
