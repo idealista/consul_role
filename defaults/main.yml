@@ -5,6 +5,8 @@ consul_user: consul
 consul_group: consul
 consul_nodename: "{{ ansible_nodename }}"
 
+private_tmp_service: no
+
 consul_force_install: false
 
 ## List with the hosts acting as servers
