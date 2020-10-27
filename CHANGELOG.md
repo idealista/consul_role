@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/consul_role/tree/develop)
 
+
+## [1.4.1](https://github.com/idealista/consul_role/tree/1.4.1)
+### [Full Changelog](https://github.com/idealista/consul_role/compare/1.4.0...1.4.1)
+### Added
+- *[#46](https://github.com/idealista/consul_role/issues/46) *Add private_tmp_service variable for consul.service* @xtianae7
+
 ## [1.4.0](https://github.com/idealista/consul_role/tree/1.4.0)
 ### [Full Changelog](https://github.com/idealista/consul_role/compare/1.3.0...1.4.0)
 ### Added
