@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/consul_role/tree/develop)
+### Added
+- *[#58](https://github.com/idealista/consul_role/issues/58) *Add support for consul connect* @vicsufer
 
 
 ## [1.4.1](https://github.com/idealista/consul_role/tree/1.4.1)
