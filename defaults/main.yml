@@ -16,8 +16,8 @@ consul_max_files: 32768
 # Service logs
 # If wanted to output the logs to a file define the following variable
 # More information at https://www.freedesktop.org/software/systemd/man/systemd.exec.html#StandardOutput=
-#consul_log_file: path_of_the_file
-consul_log_output: "{% if consul_log_file is defined %} file:{{ consul_log_file }} {% else %} journal {% endif %}"
+#consul_service_log_file: path_of_the_file
+consul_service_log_output: "{% if consul_service_log_file is defined %} file:{{ consul_service_log_file }} {% else %} journal {% endif %}"
 
 
 ## List with the hosts acting as servers
