@@ -64,6 +64,9 @@ consul_acl_agent_token: agent
 #       - service: ""
 #         policy: read
 
+# Consul Connect #
+consul_connect_enabled: true
+
 # Services #
 consul_agent_services: false
 consul_service_sanity_healthcheck: true  # Perform healthcheck on services priot to registration
