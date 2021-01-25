@@ -65,7 +65,7 @@ consul_acl_agent_token: agent
 #         policy: read
 
 # Consul Connect #
-consul_connect_enabled: true
+consul_connect_enabled: false
 
 # Services #
 consul_agent_services: false
