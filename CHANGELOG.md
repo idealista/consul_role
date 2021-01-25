@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/consul_role/tree/develop)
 ### Added
+- *[#58](https://github.com/idealista/consul_role/issues/58) *Add support for consul connect* @vicsufer
 - *[#57](https://github.com/idealista/consul_role/issues/57) *Add LimitNOFILE configuration for consul.service* @blalop
 
 ## [1.4.1](https://github.com/idealista/consul_role/tree/1.4.1)

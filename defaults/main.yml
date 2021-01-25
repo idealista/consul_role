@@ -1,5 +1,5 @@
 ---
-consul_version: 1.2.3
+consul_version: 1.9.2
 
 consul_user: consul
 consul_group: consul
@@ -66,6 +66,9 @@ consul_acl_agent_token: agent
 #         policy: write
 #       - service: ""
 #         policy: read
+
+# Consul Connect #
+consul_connect_enabled: false
 
 # Services #
 consul_agent_services: false

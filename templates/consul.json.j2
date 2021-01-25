@@ -23,6 +23,11 @@
   "rejoin_after_leave": true,
 {% if consul_server %}
   "bootstrap_expect": {{ consul_server_nodes|length }},
+{% if consul_connect_enabled %}
+  "connect": {
+    "enabled": true
+  },
+{% endif %}
 {% endif %}
   "start_join": [{% for host in consul_server_nodes %}"{{ host }}"{% if not loop.last %}, {% endif %}{% endfor %}]
 }
