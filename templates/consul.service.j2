@@ -13,5 +13,8 @@ ExecReload={{ consul_bindir }}/consul reload
 KillMode=process
 LimitNOFILE={{ consul_max_files }}
 
+StandardOutput={{ consul_log_output }}
+StandardError={{ consul_log_output }}
+
 [Install]
 WantedBy=multi-user.target
