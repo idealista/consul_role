@@ -9,6 +9,9 @@ private_tmp_service: no
 
 consul_force_install: false
 
+# Maximum number of files limit
+consul_max_files: 32768
+
 ## List with the hosts acting as servers
 # consul_server_nodes:
 
