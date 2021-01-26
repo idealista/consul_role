@@ -4,9 +4,12 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/consul_role/tree/develop)
+
+## [1.5.0](https://github.com/idealista/consul_role/tree/1.5.0)
+### [Full Changelog](https://github.com/idealista/consul_role/compare/1.4.1...1.5.0)
 ### Added
 - *[#58](https://github.com/idealista/consul_role/issues/58) *Add support for consul connect* @vicsufer
-- *[#57](https://github.com/idealista/consul_role/issues/57) *Add LimitNOFILE configuration for consul.service* @blalop
+- *[#57](https://github.com/idealista/consul_role/issues/57) *Add LimitNOFILE configuration vars for consul.service* @blalop
 - *[#60](https://github.com/idealista/consul_role/issues/60) *Add StandardOutput and StandardError configuration vars for consul.service* @blalop
 
 ## [1.4.1](https://github.com/idealista/consul_role/tree/1.4.1)
