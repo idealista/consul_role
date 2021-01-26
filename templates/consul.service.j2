@@ -11,7 +11,10 @@ User={{ consul_user }}
 Group={{ consul_group }}
 ExecReload={{ consul_bindir }}/consul reload
 KillMode=process
-PrivateTmp=true
+LimitNOFILE={{ consul_max_files }}
+
+StandardOutput={{ consul_service_log_output }}
+StandardError={{ consul_service_log_output }}
 
 [Install]
 WantedBy=multi-user.target

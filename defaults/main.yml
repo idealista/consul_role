@@ -1,5 +1,5 @@
 ---
-consul_version: 1.2.3
+consul_version: 1.9.2
 
 consul_user: consul
 consul_group: consul
@@ -8,6 +8,17 @@ consul_nodename: "{{ ansible_nodename }}"
 private_tmp_service: no
 
 consul_force_install: false
+
+# Maximum number of files limit
+consul_max_files: 32768
+
+
+# Service logs
+# If wanted to output the logs to a file define the following variable
+# More information at https://www.freedesktop.org/software/systemd/man/systemd.exec.html#StandardOutput=
+#consul_service_log_file: path_of_the_file
+consul_service_log_output: "{% if consul_service_log_file is defined %} file:{{ consul_service_log_file }} {% else %} journal {% endif %}"
+
 
 ## List with the hosts acting as servers
 # consul_server_nodes:
@@ -63,6 +74,9 @@ consul_acl_agent_token: agent
 #         policy: write
 #       - service: ""
 #         policy: read
+
+# Consul Connect #
+consul_connect_enabled: false
 
 # Services #
 consul_agent_services: false
