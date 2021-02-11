@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/consul_role/tree/develop)
+Changed
+#64 Remove logrotate installation from role @vsuarez
+### Changed
+- *[#48](https://github.com/idealista/apache_httpd_role/issues/48) Upgrade `httpd`, `molecule`, `goss`, `mod_jk` and `brotli`, add requirements and update travis* @caldito	- *[#66](https://github.com/idealista/apache_httpd_role/issues/66) Remove logrotate installation from role* @caldito
 
 ## [1.5.0](https://github.com/idealista/consul_role/tree/1.5.0)
 ### [Full Changelog](https://github.com/idealista/consul_role/compare/1.4.1...1.5.0)

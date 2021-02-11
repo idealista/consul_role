@@ -42,7 +42,6 @@ consul_http_port: 8500
 consul_dns_port: 8600
 
 consul_configuration_template_path: consul.json.j2
-consul_logrotate_template_path: logrotate.j2
 consul_service_template_path: consul.service.j2
 
 # Consul nodes behaviour #
