@@ -15,8 +15,7 @@
   "advertise_addr": "{{ consul_ip }}",
   "ports": {
     "http": {{ consul_http_port }},
-    "dns": {{ consul_dns_port }}
-{% if consul_connect_enabled %}
+    "dns": {{ consul_dns_port }}{% if consul_connect_enabled %},
     "grpc": {{ consul_grpc_port }}
 {% endif %}
   },
