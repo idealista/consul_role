@@ -16,7 +16,7 @@
   "ports": {
     "http": {{ consul_http_port }},
     "dns": {{ consul_dns_port }}{% if consul_connect_enabled %},
-    "grpc": {{ consul_grcp_port }}
+    "grpc": {{ consul_grpc_port }}
 {% endif %}
   },
   "server": {{ "true" if consul_server else "false" }},
