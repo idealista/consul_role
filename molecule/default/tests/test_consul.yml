@@ -14,6 +14,8 @@ file:
     exists: true
     filetype: symlink
     linked-to: /opt/consul/bin/consul
+  /var/log/consul/consul.log:
+    exists: true
 
 user:
   consul:
@@ -32,7 +34,7 @@ port:
   {% endif -%}
   tcp6:8500:
     listening: true
-  tcp:8600:
+  tcp6:8600:
     listening: true
 
 {% if consul_server %}
