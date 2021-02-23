@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
+## Unchanged
+## [1.7.0](https://github.com/idealista/consul_role/tree/1.7.0)(2021-02-23)
+### [Full Changelog](https://github.com/idealista/consul_role/compare/1.6.0...1.7.0)
+### Fixed
+- *[#69](https://github.com/idealista/consul_role/pull/69) Fix logs, remove timestamp* @caldito
+### Added
+- *[#67](https://github.com/idealista/consul_role/pull/67) Allow to set grpc port* @vsuarez
 
 ## [1.6.0](https://github.com/idealista/consul_role/tree/1.6.0)
 ### [Full Changelog](https://github.com/idealista/consul_role/compare/1.5.0...1.6.0)

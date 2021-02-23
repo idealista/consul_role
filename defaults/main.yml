@@ -16,8 +16,12 @@ consul_max_files: 32768
 # Service logs
 # If wanted to output the logs to a file define the following variable
 # More information at https://www.freedesktop.org/software/systemd/man/systemd.exec.html#StandardOutput=
-#consul_service_log_file: path_of_the_file
-consul_service_log_output: "{% if consul_service_log_file is defined %} file:{{ consul_service_log_file }} {% else %} journal {% endif %}"
+consul_logdir: /var/log/consul
+consul_logfile: "{{ consul_logdir }}/consul.log"
+consul_loglevel: INFO
+consul_service_log_output: "file:{{ consul_logfile }}"
+
+consul_service_docs: https://www.consul.io/docs/agent/options
 
 
 ## List with the hosts acting as servers
@@ -30,16 +34,13 @@ consul_configdir: "{{ consul_basedir }}/consul.d"
 consul_datadir: "{{ consul_basedir }}/data"
 consul_syslog: false
 
-consul_logdir: /var/log/consul
-consul_logfile: "{{ consul_logdir }}/consul.log"
-consul_loglevel: INFO
-
 consul_domain: consul
 consul_datacenter: main
 consul_interface: "{{ ansible_default_ipv4.alias }}"
 consul_ip: "{{ hostvars[ansible_nodename]['ansible_' + consul_interface]['ipv4']['address'] }}"
 consul_http_port: 8500
 consul_dns_port: 8600
+consul_grpc_port: 8502
 
 consul_configuration_template_path: consul.json.j2
 consul_service_template_path: consul.service.j2

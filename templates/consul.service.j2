@@ -2,11 +2,12 @@
 Description=consul agent
 Requires=network-online.target
 After=network-online.target
+Documentation={{ consul_service_docs }}
 
 [Service]
 PrivateTmp={{ private_tmp_service }}
 Restart=on-failure
-ExecStart={{ consul_bindir }}/consul agent {% if consul_server %}-server{% endif %} {% if consul_ui %}-ui{% endif %} -config-dir {{ consul_configdir }} {% if consul_enable_script_check %}-enable-script-checks{% endif %}
+ExecStart={{ consul_bindir }}/consul agent -config-dir {{ consul_configdir }} {% if consul_enable_script_check %}-enable-script-checks{% endif %}
 User={{ consul_user }}
 Group={{ consul_group }}
 ExecReload={{ consul_bindir }}/consul reload
