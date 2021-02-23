@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## Unchanged
+### Fixed
+- *[#69](https://github.com/idealista/consul_role/pull/69) Fix logs, remove timestamp* @caldito
 ### Added
 - *[#67](https://github.com/idealista/consul_role/pull/67) Allow to set grpc port* @vsuarez
 
