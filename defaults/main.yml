@@ -21,7 +21,8 @@ consul_logfile: "{{ consul_logdir }}/consul.log"
 consul_loglevel: INFO
 
 consul_service_docs: https://www.consul.io/docs/agent/options
-
+# use 'journal' to just write logs to the journal. When using 'syslog' the config is prepared to write data to consul_logfile by default
+consul_service_log_output: syslog
 
 ## List with the hosts acting as servers
 # consul_server_nodes:
@@ -31,7 +32,6 @@ consul_basedir: /opt/consul
 consul_bindir: "{{ consul_basedir }}/bin"
 consul_configdir: "{{ consul_basedir }}/consul.d"
 consul_datadir: "{{ consul_basedir }}/data"
-consul_syslog: false
 
 consul_domain: consul
 consul_datacenter: main

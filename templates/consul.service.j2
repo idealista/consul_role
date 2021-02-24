@@ -13,9 +13,9 @@ Group={{ consul_group }}
 ExecReload={{ consul_bindir }}/consul reload
 KillMode=process
 LimitNOFILE={{ consul_max_files }}
-StandardOutput=syslog
-StandardError=syslog
-SyslogIdentifier=consul
+StandardOutput={{ consul_service_log_output }}
+StandardError={{ consul_service_log_output }}
+{% if consul_service_log_output == "syslog" %}SyslogIdentifier=consul{% endif %}
 
 [Install]
 WantedBy=multi-user.target
