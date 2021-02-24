@@ -21,7 +21,11 @@ consul_logfile: "{{ consul_logdir }}/consul.log"
 consul_loglevel: INFO
 
 consul_service_docs: https://www.consul.io/docs/agent/options
-# use 'journal' to just write logs to the journal. When using 'syslog' the config is prepared to write data to consul_logfile by default
+
+# Use 'journal' to just write logs to the journal or see other options at: 
+# https://manpages.debian.org/stretch/systemd/systemd.exec.5.en.html (Debian 9 systems, go see the StandardOutput section)
+# https://www.freedesktop.org/software/systemd/man/systemd.exec.html#StandardOutput= (Debian 10 systems)
+# When using 'syslog' the config is prepared to write data to consul_logfile by default
 consul_service_log_output: syslog
 
 ## List with the hosts acting as servers
