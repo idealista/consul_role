@@ -5,7 +5,7 @@ consul_user: consul
 consul_group: consul
 consul_nodename: "{{ ansible_nodename }}"
 
-private_tmp_service: no
+consul_service_private_tmp: no
 
 consul_force_install: false
 
