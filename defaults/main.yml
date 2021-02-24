@@ -19,7 +19,6 @@ consul_max_files: 32768
 consul_logdir: /var/log/consul
 consul_logfile: "{{ consul_logdir }}/consul.log"
 consul_loglevel: INFO
-consul_service_log_output: "file:{{ consul_logfile }}"
 
 consul_service_docs: https://www.consul.io/docs/agent/options
 

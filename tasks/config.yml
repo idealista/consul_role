@@ -9,6 +9,16 @@
 
 - name: Consul | Copy consul.service file
   template:
+    src: rsyslog.d/consul.conf.j2
+    dest: /etc/rsyslog.d/consul.conf
+    trim_blocks: false
+    mode: 0644
+    owner: root
+    group: root
+  notify: restart rsyslog
+
+- name: Consul | Copy consul.service file
+  template:
     src: "{{ consul_service_template_path }}"
     dest: /etc/systemd/system/consul.service
     trim_blocks: false
