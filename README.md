@@ -24,6 +24,8 @@ These instructions will get you a copy of the role for your Ansible Playbook. On
 Ansible 2.9.x.x version installed.
 Inventory destination should be a Debian environment.
 
+Rsyslog needs should be installed. It can be done with this [role](https://github.com/idealista/rsyslog_role).
+
 For testing purposes, [Molecule](https://molecule.readthedocs.io/) with [Docker](https://www.docker.com/) as driver.
 
 ### Installing
@@ -32,7 +34,7 @@ Create or add to your roles dependency file (e.g requirements.yml):
 
 ``` yml
 - src: idealista.consul_role
-  version: 1.3.0
+  version: 1.7.2
   name: consul
 ```
 
@@ -54,6 +56,9 @@ Use in a playbook:
 ## Usage
 
 Look to the defaults properties file (`defaults/main.yml`) to see the possible configuration properties.
+Logging uses rsyslog by default. It can be changed by overriding the `consul_service_log_output` variable. It can be changed to `journal` or other options seen at the StandardOutput and StandardError sections in:
+ * [Debian 9 systemd docs](https://manpages.debian.org/stretch/systemd/systemd.exec.5.en.html)
+ * [Debian 10 systemd docs](https://www.freedesktop.org/software/systemd/man/systemd.exec.html#StandardOutput=)
 
 ## Testing
 

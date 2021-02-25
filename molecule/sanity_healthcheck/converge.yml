@@ -1,7 +1,12 @@
 ---
 - hosts: consulserver
   roles:
+    - rsyslog
     - consul_role
+
+- hosts: consulagent
+  roles:
+    - rsyslog
 
 - hosts: consulagent
   gather_facts: true
