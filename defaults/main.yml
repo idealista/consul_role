@@ -5,7 +5,7 @@ consul_user: consul
 consul_group: consul
 consul_nodename: "{{ ansible_nodename }}"
 
-consul_service_private_tmp: no
+consul_service_private_tmp: "{{ private_tmp_service | default(false) }}"
 
 consul_force_install: false
 
@@ -22,7 +22,7 @@ consul_loglevel: INFO
 
 consul_service_docs: https://www.consul.io/docs/agent/options
 
-# Use 'journal' to just write logs to the journal or see other options at: 
+# Use 'journal' to just write logs to the journal or see other options at:
 # https://manpages.debian.org/stretch/systemd/systemd.exec.5.en.html (Debian 9 systems, go see the StandardOutput section)
 # https://www.freedesktop.org/software/systemd/man/systemd.exec.html#StandardOutput= (Debian 10 systems)
 # When using 'syslog' the config is prepared to write data to consul_logfile by default
