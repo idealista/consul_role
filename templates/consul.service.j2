@@ -5,7 +5,7 @@ After=network-online.target
 Documentation={{ consul_service_docs }}
 
 [Service]
-PrivateTmp={{ private_tmp_service }}
+PrivateTmp={{ consul_service_private_tmp }}
 Restart=on-failure
 ExecStart={{ consul_bindir }}/consul agent -config-dir {{ consul_configdir }} {% if consul_enable_script_check %}-enable-script-checks{% endif %}
 User={{ consul_user }}
@@ -13,9 +13,9 @@ Group={{ consul_group }}
 ExecReload={{ consul_bindir }}/consul reload
 KillMode=process
 LimitNOFILE={{ consul_max_files }}
-
 StandardOutput={{ consul_service_log_output }}
 StandardError={{ consul_service_log_output }}
+{% if consul_service_log_output == "syslog" %}SyslogIdentifier=consul{% endif %}
 
 [Install]
 WantedBy=multi-user.target

@@ -3,3 +3,8 @@
   systemd:
     name: consul
     state: restarted
+
+- name: restart rsyslog
+  systemd:
+    name: rsyslog
+    state: restarted
