@@ -12,7 +12,7 @@ lint: |
 platforms:
   - name: consulserver
     hostname: consulserver
-    image: ${MOLECULE_DISTRO:-debian:buster-slim}
+    image: ${MOLECULE_DISTRO:-debian:bullseye-slim}
     networks:
       - name: consul_network
     purge_networks: true
@@ -34,7 +34,7 @@ platforms:
 
   - name: consulagent
     hostname: consulagent
-    image: ${MOLECULE_DISTRO:-debian:buster-slim}
+    image: ${MOLECULE_DISTRO:-debian:bullseye-slim}
     networks:
       - name: consul_network
     purge_networks: true

@@ -93,7 +93,7 @@ consul_services_register:  # Example:
 consul_required_libs:
   - unzip
   - ca-certificates
-  - python-pip
+  - "{{ python_pip_package }}"
 
 consul_required_python_libs:
   - python-consul
