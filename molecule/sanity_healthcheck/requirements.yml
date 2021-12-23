@@ -1,8 +1,8 @@
 ---
 - src: idealista.prometheus_node_exporter_role
-  version: 4.0.1
+  version: 6.0.0
   name: node_exporter
 
 - src: idealista.rsyslog_role
-  version: 2.2.0
+  version: 2.2.1
   name: rsyslog

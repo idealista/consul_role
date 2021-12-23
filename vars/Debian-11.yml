@@ -1,0 +1,5 @@
+---
+__consul_required_libs:
+  - unzip
+  - ca-certificates
+  - python3-pip

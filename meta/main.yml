@@ -1,12 +1,13 @@
 ---
 galaxy_info:
   company: Idealista S.A.U.
-  author: Idealista S.A.U.
+  author: idealista
   description: Consul
-  min_ansible_version: 2.9.0.0
+  min_ansible_version: 4.6.0.0
   license: Apache 2.0
   platforms:
     - name: Debian
       versions:
         - stretch
         - buster
+        - bullseye
