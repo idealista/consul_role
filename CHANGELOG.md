@@ -3,7 +3,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
-## Unchanged
+## Unreleased
+### Added
+
+- *[#80](https://github.com/idealista/consul_role/issues/80) Added Debian11 support* @xtianae7
+
+### Changed
+- *Bumped dependencies* @xtianae7
 
 ## [1.7.1](https://github.com/idealista/consul_role/tree/1.7.1) (2021-02-25)
 ### [Full Changelog](https://github.com/idealista/consul_role/compare/1.7.0...1.7.1)

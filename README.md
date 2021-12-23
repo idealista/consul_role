@@ -21,7 +21,7 @@ These instructions will get you a copy of the role for your Ansible Playbook. On
 
 ### Prerequisities
 
-Ansible 2.9.x.x version installed.
+Ansible 4.x.x version installed.
 Inventory destination should be a Debian environment.
 
 Rsyslog needs should be installed. It can be done with this [role](https://github.com/idealista/rsyslog_role).
@@ -58,8 +58,7 @@ Use in a playbook:
 Look to the defaults properties file (`defaults/main.yml`) to see the possible configuration properties.
 Logging uses rsyslog by default. It can be changed by overriding the `consul_service_log_output` variable. It can be changed to `journal` or other options seen at the StandardOutput and StandardError sections in:
  * [Debian 9 systemd docs](https://manpages.debian.org/stretch/systemd/systemd.exec.5.en.html)
- * [Debian 10 systemd docs](https://www.freedesktop.org/software/systemd/man/systemd.exec.html#StandardOutput=)
-
+ * [Debian 10 and 11 systemd docs](https://www.freedesktop.org/software/systemd/man/systemd.exec.html#StandardOutput=)
 ## Testing
 
 ```sh
@@ -71,14 +70,14 @@ For more information read the [pipenv docs](https://docs.pipenv.org/).
 ### Testing
 
 ```sh
-$ pipenv run molecule test 
+$ pipenv run molecule -c molecule/default/molecule.yml test 
 ```
 
 ## Built With
 
-![Ansible](https://img.shields.io/badge/ansible-2.9.0-green.svg)
-![Molecule](https://img.shields.io/badge/molecule-3.0.4-green.svg)
-![Goss](https://img.shields.io/badge/goss-0.3.11-green.svg)
+![Ansible](https://img.shields.io/badge/ansible-4.6.0-green.svg)
+![Molecule](https://img.shields.io/badge/molecule-3.5.2-green.svg)
+![Goss](https://img.shields.io/badge/goss-0.3.16-green.svg)
 
 ## Versioning
 
