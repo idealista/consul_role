@@ -1,2 +1,5 @@
 ---
-python_pip_package: python3-pip
+__consul_required_libs:
+  - unzip
+  - ca-certificates
+  - python3-pip

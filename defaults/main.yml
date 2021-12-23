@@ -90,11 +90,6 @@ consul_services_register:  # Example:
 #   http: "http://localhost:9100"
 #   interval: "60s"
 
-consul_required_libs:
-  - unzip
-  - ca-certificates
-  - "{{ python_pip_package }}"
-
 consul_required_python_libs:
   - python-consul
 
