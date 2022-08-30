@@ -37,7 +37,9 @@
   wait_for:
     port: "{{ consul_http_port }}"
     timeout: 60
-  when: consul_service_state != 'stopped'
+  when:
+    - consul_service_state != 'stopped'
+    - consul_service_enabled == True
 
 - name: Consul | Create ACL
   consul_acl:
@@ -50,4 +52,6 @@
   notify: restart consul
   with_dict: "{{ consul_acl_configuration_list }}"
   no_log: true
-  when: consul_service_state != 'stopped'
+  when:
+  - consul_service_state != 'stopped'
+  - consul_service_enabled == True
