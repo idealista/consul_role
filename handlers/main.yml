@@ -3,6 +3,7 @@
   systemd:
     name: consul
     state: restarted
+  when: consul_service_state != 'stopped'
 
 - name: restart rsyslog
   systemd:

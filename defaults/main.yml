@@ -90,6 +90,11 @@ consul_services_register:  # Example:
 #   http: "http://localhost:9100"
 #   interval: "60s"
 
+# Start on boot
+consul_service_enabled: True
+# Current state: started, stopped
+consul_service_state: started
+
 consul_required_python_libs:
   - python-consul
 

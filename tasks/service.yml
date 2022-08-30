@@ -2,6 +2,6 @@
 - name: Register systemd service
   systemd:
     name: consul
-    enabled: true
+    enabled: "{{ consul_service_enabled }}"
     daemon_reload: true
-    state: started
+    state: "{{ consul_service_state }}"
