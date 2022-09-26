@@ -11,6 +11,7 @@ consul_services_register:
     port: 9100
     http: "http://localhost:9100/metrics"
     interval: "60s"
+    timeout: "30s"
   - name: node exporter script
     script: "pidof node_exporter"
     interval: "60s"

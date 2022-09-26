@@ -25,6 +25,7 @@
     state: directory
     owner: "{{ consul_user }}"
     group: "{{ consul_group }}"
+    mode: 0755
   with_items:
     - "{{ consul_bindir }}"
     - "{{ consul_configdir }}"
@@ -38,7 +39,7 @@
     owner: "{{ consul_user }}"
     group: "{{ consul_group }}"
     remote_src: yes
-  notify: restart consul
+  notify: Restart consul
 
 - name: Consul | Link binary
   file:
