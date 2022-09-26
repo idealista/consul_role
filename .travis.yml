@@ -1,7 +1,7 @@
 ---
 dist: focal
 language: python
-python: "3.9"
+python: "3.10"
 os: linux
 services:
   - docker
@@ -14,7 +14,7 @@ env:
     - MOLECULE_DISTRO=debian:buster-slim
     - MOLECULE_DISTRO=debian:stretch-slim
 script:
-  - travis_wait 60 pipenv run molecule test --all
+  - pipenv run molecule test --all
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/

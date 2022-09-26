@@ -40,7 +40,7 @@ consul_datadir: "{{ consul_basedir }}/data"
 consul_domain: consul
 consul_datacenter: main
 consul_interface: "{{ ansible_default_ipv4.alias }}"
-consul_ip: "{{ hostvars[ansible_nodename]['ansible_' + consul_interface]['ipv4']['address'] }}"
+consul_ip: "{{ hostvars[ansible_nodename]['ansible_' +consul_interface]['ipv4']['address'] }}"
 consul_http_port: 8500
 consul_dns_port: 8600
 consul_grpc_port: 8502

@@ -1,10 +1,10 @@
 ---
-- name: restart consul
+- name: Restart consul
   systemd:
     name: consul
     state: restarted
 
-- name: restart rsyslog
+- name: Restart rsyslog
   systemd:
     name: rsyslog
     state: restarted

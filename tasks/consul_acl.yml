@@ -6,7 +6,7 @@
     owner: "{{ consul_user }}"
     group: "{{ consul_group }}"
     mode: 0640
-  notify: restart consul
+  notify: Restart consul
   no_log: true
   when: consul_server
 
@@ -17,7 +17,7 @@
     owner: "{{ consul_user }}"
     group: "{{ consul_group }}"
     mode: 0640
-  notify: restart consul
+  notify: Restart consul
   no_log: true
   when: consul_agent
 
@@ -46,6 +46,6 @@
     rules: "{{ item.value.rules }}"
     mgmt_token: "{{ consul_acl_master_token }}"
     host: "{{ consul_server_nodes | first }}"
-  notify: restart consul
+  notify: Restart consul
   with_dict: "{{ consul_acl_configuration_list }}"
   no_log: true

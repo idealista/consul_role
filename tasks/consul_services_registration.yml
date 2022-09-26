@@ -14,8 +14,9 @@
     script: "{{ item.script | default (omit) }}"  # Script/command to check the health of the service. Requires interval.
     interval: "{{ item.interval | default (omit) }}"  # Interval between checks.
     tags: "{{ item.tags | default (omit) }}"
+    timeout: "{{ item.timeout | default (omit) }}"
     token: "{{ consul_acl_agent_token }}"
-  notify: restart consul
+  notify: Restart consul
   # We set this because of idempotency issues https://github.com/ansible/ansible-modules-extras/issues/1316
   changed_when: false
   no_log: true

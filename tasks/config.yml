@@ -5,7 +5,8 @@
     dest: "{{ consul_configdir }}/consul.json"
     owner: "{{ consul_user }}"
     group: "{{ consul_group }}"
-  notify: restart consul
+    mode: 0644
+  notify: Restart consul
 
 - name: Consul | Copy rsyslog consul config
   template:
@@ -15,7 +16,7 @@
     mode: 0644
     owner: root
     group: root
-  notify: restart rsyslog
+  notify: Restart rsyslog
   when: consul_service_log_output == "syslog"
 
 - name: Consul | Copy consul.service file
@@ -26,4 +27,4 @@
     mode: 0644
     owner: root
     group: root
-  notify: restart consul
+  notify: Restart consul
