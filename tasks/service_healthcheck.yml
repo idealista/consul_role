@@ -9,6 +9,7 @@
     - name: Consul | Check that web server is available
       uri:
         url: "{{ item.http }}"
+        timeout: "{{ item.timeout | default (omit) }}"
         return_content: no
         status_code: 200
       when: "item.http is defined"
