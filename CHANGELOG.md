@@ -4,10 +4,13 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## Unreleased
+### Fixed
+- *[#84](https://github.com/idealista/consul_role/issues/84) service check timeout in healthcheck* @blalop
 
-### Added
+
 ## [1.9.0](https://github.com/idealista/consul_role/tree/1.9.0) (2022-09-26)
 ### [Full Changelog](https://github.com/idealista/consul_role/compare/1.8.0...1.9.0)
+### Added
 - *[#84](https://github.com/idealista/consul_role/issues/84) Added service check timeout support* @blalop
 
 ## [1.8.0](https://github.com/idealista/consul_role/tree/1.8.0) (2021-12-23)
