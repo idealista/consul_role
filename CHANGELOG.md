@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## Unreleased
+
+
+
+## [1.9.1](https://github.com/idealista/consul_role/tree/1.9.1) (2022-09-28)
+### [Full Changelog](https://github.com/idealista/consul_role/compare/1.9.0...1.9.1)
 ### Fixed
 - *[#84](https://github.com/idealista/consul_role/issues/84) service check timeout in healthcheck* @blalop
 
