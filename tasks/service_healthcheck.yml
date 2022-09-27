@@ -7,9 +7,14 @@
 - name: Consul | Check service is healthy
   block:
     - name: Consul | Check that web server is available
+      vars:
+        timeout_unit: "{{ item.timeout[-1] }}"
+        timeout_has_suffix: "{{ timeout_unit in ['s', 'm'] }}"
+        timeout_seconds: "{{ item.timeout[:-1] }}"
+        timeout_minutes: "{{ item.timeout[:-1] | int * 60 }}"
       uri:
         url: "{{ item.http }}"
-        timeout: "{{ (item.timeout[:-1] if item.timeout[-1] == 's' elsif item.timeout[-1] == 'm' item.timeout[:-1] | int * 60 else item.timeout | int * 60) | default(omit) }}"
+        timeout: "{{ (item.timeout if not timeout_has_suffix else (timeout_seconds if timeout_unit == 's' else timeout_minutes)) | default(omit) }}"
         return_content: no
         status_code: 200
       when: "item.http is defined"
