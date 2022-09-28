@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## Unreleased
 
+## [1.9.2](https://github.com/idealista/consul_role/tree/1.9.2) (2022-09-28)
+### [Full Changelog](https://github.com/idealista/consul_role/compare/1.9.1...1.9.2)
+### Fixed
+- *[#84](https://github.com/idealista/consul_role/issues/84) omit timeout if none is provided* @blalop
 
 
 ## [1.9.1](https://github.com/idealista/consul_role/tree/1.9.1) (2022-09-28)
