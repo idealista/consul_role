@@ -8,13 +8,14 @@
   block:
     - name: Consul | Check that web server is available
       vars:
-        timeout_unit: "{{ item.timeout[-1] }}"
+        timeout: "{{ item.timeout | default(omit) }}"
+        timeout_unit: "{{ timeout[-1] }}"
         timeout_has_suffix: "{{ timeout_unit in ['s', 'm'] }}"
-        timeout_seconds: "{{ item.timeout[:-1] }}"
-        timeout_minutes: "{{ item.timeout[:-1] | int * 60 }}"
+        timeout_seconds: "{{ timeout[:-1] }}"
+        timeout_minutes: "{{ timeout[:-1] | int * 60 }}"
       uri:
         url: "{{ item.http }}"
-        timeout: "{{ (item.timeout if not timeout_has_suffix else (timeout_seconds if timeout_unit == 's' else timeout_minutes)) | default(omit) }}"
+        timeout: "{{ (timeout if not timeout_has_suffix else (timeout_seconds if timeout_unit == 's' else timeout_minutes)) }}"
         return_content: no
         status_code: 200
       when: "item.http is defined"
