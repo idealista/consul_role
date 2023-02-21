@@ -1,14 +1,5 @@
 ---
 
-- name: Consul | Define consul_required_libs
-  set_fact:
-    consul_required_libs: "{{ __consul_required_libs }}"
-  when: consul_required_libs is not defined
-  tags:
-    - check
-    - install
-    - configure
-
 - name: Consul | Check
   import_tasks: check.yml
   tags:
