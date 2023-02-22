@@ -108,5 +108,5 @@ consul_required_libs:
   - ca-certificates
   - "{{ python_pip }}"
 
-python_interpreter_version: "{{ (ansible_python_interpreter | default('') + discovered_interpreter_python | default('') ) | regex_search('python3?$') | regex_replace('^.*?python','python') }}"
+python_interpreter_version: "{{ (ansible_python_interpreter | default('') + discovered_interpreter_python | default('')) | regex_search('python3?$') | regex_replace('^.*?python', 'python') }}"
 python_pip: "{{ python_interpreter_version }}-pip"
