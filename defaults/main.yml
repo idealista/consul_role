@@ -106,7 +106,7 @@ consul_acl_python_required_packages:
 consul_required_libs:
   - unzip
   - ca-certificates
-  - "{{ python_pip }}"
+  - "{{ consul_python_pip }}"
 
-python_interpreter_version: "{{ (ansible_python_interpreter | default('') + discovered_interpreter_python | default('')) | regex_search('python3?$') | regex_replace('^.*?python', 'python') }}"
-python_pip: "{{ python_interpreter_version }}-pip"
+consul_python_interpreter_version: "{{ (ansible_python_interpreter | default('') + discovered_interpreter_python | default('')) | regex_search('python3?$') | regex_replace('^.*?python', 'python') }}"
+consul_python_pip: "{{ consul_python_interpreter_version }}-pip"
