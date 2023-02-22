@@ -98,6 +98,7 @@ consul_package: "consul_{{ consul_version }}_linux_amd64.zip"
 
 consul_acl_required_libs:
   - openssl
+  - "{{ consul_python_pip }}"
 
 consul_acl_python_required_packages:
   - pyhcl
