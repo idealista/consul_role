@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## Unreleased
 
+## [1.9.3](https://github.com/idealista/consul_role/tree/1.9.3) (2023-02-22)
+### [Full Changelog](https://github.com/idealista/consul_role/compare/1.9.2...1.9.3)
+### Fixed
+- *[#91](https://github.com/idealista/consul_role/issues/91) install Python dependencies based on the Python interpreter being used* @ommarmol
+
+
 ## [1.9.2](https://github.com/idealista/consul_role/tree/1.9.2) (2022-09-29)
 ### [Full Changelog](https://github.com/idealista/consul_role/compare/1.9.1...1.9.2)
 ### Fixed
