@@ -1,21 +1,4 @@
 ---
-- name: Consul | Gather  OS specific variables
-  include_vars: "{{ item }}"
-  with_first_found:
-    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
-  tags:
-    - check
-    - install
-    - configure
-
-- name: Consul | Define consul_required_libs
-  set_fact:
-    consul_required_libs: "{{ __consul_required_libs }}"
-  when: consul_required_libs is not defined
-  tags:
-    - check
-    - install
-    - configure
 
 - name: Consul | Check
   import_tasks: check.yml
