@@ -109,5 +109,4 @@ consul_required_libs:
   - ca-certificates
   - "{{ consul_python_pip }}"
 
-consul_python_interpreter_version: "{{ (ansible_python_interpreter | default('') + discovered_interpreter_python | default('')) | regex_search('python3') | ternary('python3', 'python') }}"
-consul_python_pip: "{{ consul_python_interpreter_version }}-pip"
+consul_python_pip: "{{ (ansible_python.version.major | int == 3) | ternary('python3', 'python') }}-pip"

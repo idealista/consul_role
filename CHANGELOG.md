@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## Unreleased
 
+## [1.9.4](https://github.com/idealista/consul_role/tree/1.9.4) (2023-05-24)
+### [Full Changelog](https://github.com/idealista/consul_role/compare/1.9.3...1.9.4)
+### Fixed
+- *[#94](https://github.com/idealista/consul_role/issues/94) select pip installable candidate (python-pip or python3-pip) based on ansible_python.version.major fact* @ommarmol
+- *update Dockerfiles to get working repos of archived Debian distros* @ommarmol
+
 ## [1.9.3](https://github.com/idealista/consul_role/tree/1.9.3) (2023-02-22)
 ### [Full Changelog](https://github.com/idealista/consul_role/compare/1.9.2...1.9.3)
 ### Fixed
