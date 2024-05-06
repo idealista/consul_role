@@ -5,9 +5,22 @@
     update_cache: true
     cache_valid_time: 600
 
+- name: Consul | Install virtualenv dependencies
+  apt:
+    pkg: "{{ consul_virtualenv_required_libs }}"
+    update_cache: true
+    cache_valid_time: 600
+  when: consul_python_virtualenv
+
+- name: Consul | Create python virtualenv
+  command: "{{ consul_python_bin }} -m virtualenv {{ consul_python_virtualenv_path }}"
+  changed_when: false
+  when: consul_python_virtualenv
+
 - name: Consul | Install python dependencies
   pip:
     name: "{{ consul_required_python_libs }}"
+    virtualenv: "{{ consul_python_virtualenv_path if consul_python_virtualenv else omit }}"
 
 - name: Consul | Ensure Consul group
   group:
