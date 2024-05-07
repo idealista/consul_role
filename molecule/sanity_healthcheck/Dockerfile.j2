@@ -10,7 +10,7 @@ FROM {{ item.image }}
 {% set python = "python" %}
 {% if item.image is regex('stretch') %}
     {% set distro = "stretch" %}
-{% elif item.image is regex('bullseye') %}
+{% elif item.image is regex('(bullseye|bookworm)') %}
     {% set python = "python3" %}
 {% endif %}
 

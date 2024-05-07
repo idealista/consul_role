@@ -12,14 +12,14 @@ lint: |
 platforms:
   - name: consulserver
     hostname: consulserver
-    image: ${MOLECULE_DISTRO:-debian:bullseye-slim}
+    image: ${MOLECULE_DISTRO:-debian:bookworm-slim}
     networks:
       - name: consul_network
     purge_networks: true
     stop_signal: 'RTMIN+3'
-    privileged: true
+    privileged: false
     volumes:
-      - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+      - '/sys/fs/cgroup:/sys/fs/cgroup'
     tmpfs:
       - /run
       - /run/lock
@@ -34,17 +34,17 @@ platforms:
 
   - name: consulagent
     hostname: consulagent
-    image: ${MOLECULE_DISTRO:-debian:bullseye-slim}
+    image: ${MOLECULE_DISTRO:-debian:bookworm-slim}
     networks:
       - name: consul_network
     purge_networks: true
     stop_signal: 'RTMIN+3'
-    privileged: true
+    privileged: false
     tmpfs:
       - /run
       - /run/lock
     volumes:
-      - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+      - '/sys/fs/cgroup:/sys/fs/cgroup'
     capabilities:
       - SYS_ADMIN
     groups:

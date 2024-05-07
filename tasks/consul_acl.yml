@@ -32,6 +32,7 @@
 - name: Consul | Install consul_acl Python prerequisites
   pip:
     name: "{{ consul_acl_python_required_packages }}"
+    virtualenv: "{{ consul_python_virtualenv_path if consul_python_virtualenv else omit }}"
 
 - name: Consul | Wait for Consul to start up
   wait_for:
@@ -49,3 +50,5 @@
   notify: Restart consul
   with_dict: "{{ consul_acl_configuration_list }}"
   no_log: true
+  vars:
+    ansible_python_interpreter: "{{ consul_python_virtualenv_path + '/bin/python' if consul_python_virtualenv else consul_python_bin }}"

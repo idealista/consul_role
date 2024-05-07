@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## Unreleased
 
+## [1.10.0](https://github.com/idealista/consul_role/tree/1.10.0) (2024-05-07)
+### [Full Changelog](https://github.com/idealista/consul_role/compare/1.9.4...1.10.0)
+### Added
+- *[#97](https://github.com/idealista/consul_role/issues/97) Add support for Debian 12* @ommarmol
+- *Add support for using python virtual envs during installation of python dependencies* @ommarmol
+
 ## [1.9.4](https://github.com/idealista/consul_role/tree/1.9.4) (2023-05-24)
 ### [Full Changelog](https://github.com/idealista/consul_role/compare/1.9.3...1.9.4)
 ### Fixed
