@@ -13,12 +13,12 @@ install:
   - pipenv sync
 env:
   jobs:
-    - MOLECULE_DISTRO=debian:bookworm-slim ANSIBLE_EXTRA_VARS="consul_python_virtualenv=true"
+    - MOLECULE_DISTRO=debian:bookworm-slim
     - MOLECULE_DISTRO=debian:bullseye-slim
     - MOLECULE_DISTRO=debian:buster-slim
     - MOLECULE_DISTRO=debian:stretch-slim
 script:
-  - pipenv run molecule test --all -- --extra-vars "${ANSIBLE_EXTRA_VARS}"
+  - pipenv run molecule test --all
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
