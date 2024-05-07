@@ -22,6 +22,8 @@
   no_log: true
   with_items:
     - "{{ consul_services_register }}"
+  vars:
+    ansible_python_interpreter: "{{ consul_python_virtualenv_path + '/bin/python' if consul_python_virtualenv else consul_python_bin }}"
 
 # Temporary, until consul state=absent is fixed
 - name: Consul | De-register services

@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## Unreleased
+### Added
+- *[#97](https://github.com/idealista/consul_role/issues/97) Add support for Debian 12* @ommarmol
+- *Add support for using python virtual envs during installation of python dependencies * @ommarmol
 
 ## [1.9.4](https://github.com/idealista/consul_role/tree/1.9.4) (2023-05-24)
 ### [Full Changelog](https://github.com/idealista/consul_role/compare/1.9.3...1.9.4)

@@ -98,7 +98,7 @@ consul_package: "consul_{{ consul_version }}_linux_amd64.zip"
 
 consul_acl_required_libs:
   - openssl
-  - "{{ consul_python_pip }}"
+  - "{{ consul_python_bin }}-pip"
 
 consul_acl_python_required_packages:
   - pyhcl
@@ -107,6 +107,11 @@ consul_acl_python_required_packages:
 consul_required_libs:
   - unzip
   - ca-certificates
-  - "{{ consul_python_pip }}"
 
-consul_python_pip: "{{ (ansible_python.version.major | int == 3) | ternary('python3', 'python') }}-pip"
+consul_virtualenv_required_libs:
+  - "{{ consul_python_bin }}-virtualenv"
+
+consul_python_bin: "{{ (ansible_python.version.major | int == 3) | ternary('python3', 'python') }}"
+consul_python_virtualenv: "{{ (hostvars[inventory_hostname].ansible_distribution_major_version | int >= 12) | ternary(true, false) }}"  # Set to true for installing and using virtualenvs. Default is true for Debian >= 12
+consul_python_virtualenv_name: idealista_consul_role
+consul_python_virtualenv_path: "{{ ansible_env.HOME }}/.virtualenvs/{{ consul_python_virtualenv_name }}"
