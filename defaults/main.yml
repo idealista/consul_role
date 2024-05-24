@@ -107,6 +107,7 @@ consul_acl_python_required_packages:
 consul_required_libs:
   - unzip
   - ca-certificates
+  - "{{ consul_python_bin }}-pip"
 
 consul_virtualenv_required_libs:
   - "{{ consul_python_bin }}-virtualenv"
