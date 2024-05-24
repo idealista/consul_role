@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## Unreleased
+### Fixed
+- *[#101](https://github.com/idealista/consul_role/issues/101) add python-pip/python3-pip as required dependency* @ommarmol
 
 ## [1.10.0](https://github.com/idealista/consul_role/tree/1.10.0) (2024-05-07)
 ### [Full Changelog](https://github.com/idealista/consul_role/compare/1.9.4...1.10.0)
