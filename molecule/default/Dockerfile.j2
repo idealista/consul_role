@@ -26,7 +26,7 @@ RUN echo "deb http://archive.debian.org/debian/ {{ distro }} main contrib non-fr
 {% else %}
 RUN apt-get update && \
 {% endif %}
-    apt-get install -y --force-yes {{ python }} sudo bash ca-certificates iproute2 systemd systemd-sysv {{ python }}-pip && \
+    apt-get install -y --force-yes {{ python }} sudo bash ca-certificates iproute2 systemd systemd-sysv && \
     apt-get clean
 
 # https://github.com/moby/moby/issues/28614#issuecomment-310581026
