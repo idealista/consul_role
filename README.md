@@ -34,7 +34,7 @@ Create or add to your roles dependency file (e.g requirements.yml):
 
 ``` yml
 - src: idealista.consul_role
-  version: 1.7.2
+  version: 1.10.1
   name: consul
 ```
 
@@ -58,7 +58,7 @@ Use in a playbook:
 Look to the defaults properties file (`defaults/main.yml`) to see the possible configuration properties.
 Logging uses rsyslog by default. It can be changed by overriding the `consul_service_log_output` variable. It can be changed to `journal` or other options seen at the StandardOutput and StandardError sections in:
  * [Debian 9 systemd docs](https://manpages.debian.org/stretch/systemd/systemd.exec.5.en.html)
- * [Debian 10 and 11 systemd docs](https://www.freedesktop.org/software/systemd/man/systemd.exec.html#StandardOutput=)
+ * [Debian 10, 11 and 12 systemd docs](https://www.freedesktop.org/software/systemd/man/systemd.exec.html#StandardOutput=)
 ## Testing
 
 ```sh
