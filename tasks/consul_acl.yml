@@ -39,16 +39,45 @@
     port: "{{ consul_http_port }}"
     timeout: 60
 
-- name: Consul | Create ACL
-  ansible.builtin.consul_acl:
+- name: Consul | Create policies
+  community.general.consul_policy:
+    name: "{{ item.name }}"
+    rules: "{{ item.rules }}"
+    host: "{{ consul_server_nodes | first }}"
+    token: "{{ consul_acl_master_token }}"
+  notify: Restart consul
+  with_items: "{{ consul_acl_policies }}"
+  no_log: true
+  vars:
+    ansible_python_interpreter: "{{ consul_python_virtualenv_path + '/bin/python' if consul_python_virtualenv else consul_python_bin }}"
+  when: consul_version is version('1.4.0', '>=')
+
+- name: Consul | Create token
+  community.general.consul_token:
+    token: "{{ consul_acl_master_token }}"
+    accessor_id: "{{ item.accessor_id }}"
+    description: "{{ item.name }}"
+    policies: "{{ item.policies }}"
+    host: "{{ consul_server_nodes | first }}"
+  notify: Restart consul
+  with_items: "{{ consul_acl_tokens }}"
+  no_log: true
+  vars:
+    ansible_python_interpreter: "{{ consul_python_virtualenv_path + '/bin/python' if consul_python_virtualenv else consul_python_bin }}"
+  when: consul_version is version('1.4.0', '>=')
+
+- name: Consul | Create ACL (legacy)
+  consul_acl:
     name: "{{ item.key }}"
     token_type: "{{ item.value.token_type }}"
     token: "{{ item.value.token }}"
     rules: "{{ item.value.rules }}"
     mgmt_token: "{{ consul_acl_master_token }}"
     host: "{{ consul_server_nodes | first }}"
+  vars:
+    ansible_python_interpreter: "{{ consul_python_virtualenv_path + '/bin/python' if consul_python_virtualenv else consul_python_bin }}"
   notify: Restart consul
   with_dict: "{{ consul_acl_configuration_list }}"
   no_log: true
-  vars:
-    ansible_python_interpreter: "{{ consul_python_virtualenv_path + '/bin/python' if consul_python_virtualenv else consul_python_bin }}"
+  tags: [acl_legacy]
+  when: consul_version is version('1.4.0', '<')

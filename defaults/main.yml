@@ -66,6 +66,40 @@ consul_acl_down_policy: extend-cache
 consul_acl_master_token: master
 consul_acl_agent_token: agent
 
+# ACL policies examnple
+# consul_acl_policies:
+#   - name: agent
+#     rules: |
+#       node "" {
+#         policy = "write"
+#       }
+#       service "" {
+#         policy = "write"
+#       }
+#   - name: anonymous
+#     rules: |
+#       key "" {
+#         policy = "read"
+#       }
+#       node "" {
+#         policy = "read"
+#       }
+#       service "" {
+#         policy = "read"
+#       }
+
+# ACL tokens example
+# consul_acl_tokens:
+#   - name: Agent
+#     accessor_id: 972f8a50-9864-89fc-7db9-aadaafeaf538
+#     policies:
+#       - name: agent
+#   ## ACL for anonymous UI reading
+#   - name: Anonymous Token
+#     accessor_id: 738ffff3-b313-e678-ad9a-fbd324afd5c4
+#     policies:
+#       - name: anonymous
+
 ## ACL for discovery synchronization between servers
 # Example
 # consul_acl_configuration_list:
