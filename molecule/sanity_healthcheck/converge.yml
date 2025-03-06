@@ -1,18 +1,22 @@
 ---
-- hosts: consulserver
+- name: Converge | Apply roles to consulserver
+  hosts: consulserver
   roles:
     - rsyslog
     - consul_role
 
-- hosts: consulagent
+- name: Converge | Apply rsyslog role to consulagent
+  hosts: consulagent
   roles:
     - rsyslog
 
-- hosts: consulagent
+- name: Converge | Run tasks on consulagent
+  hosts: consulagent
   gather_facts: true
   tasks:
-  - block:
-    - name: "Try to apply role with not http or script parameters"
+  - name: Converge | Block to apply role with not http or script parameters
+    block:
+    - name: Converge | Try to apply role with not http or script parameters
       include_role:
         name: consul_role
       vars:
@@ -20,16 +24,18 @@
         - name: node exporter http
           port: 9100
     rescue:
-      - set_fact:
+      - name: Converge | Set fact role_error_params
+        set_fact:
           role_error_params: true
     always:
-    - name: Fail if no error raised
+    - name: Converge | Fail if no error raised
       fail:
         msg: "An error should've been raised by the role"
       when: role_error_params is not defined
 
-  - block:
-      - name: "Try to apply role with bad configured webservice"
+  - name: Converge | Block to apply role with bad configured webservice
+    block:
+      - name: Converge | Try to apply role with bad configured webservice
         include_role:
           name: consul_role
         vars:
@@ -39,16 +45,18 @@
             http: "http://localhost:14/randomurl"
             interval: "60s"
     rescue:
-    - set_fact:
+    - name: Converge | Set fact role_error_webservice
+      set_fact:
         role_error_webservice: true
     always:
-    - name: Fail if no error raised
+    - name: Converge | Fail if no error raised
       fail:
         msg: "An error should've been raised by the role"
       when: role_error_webservice is not defined
 
-  - block:
-      - name: "Try to apply role with bad configured service"
+  - name: Converge | Block to apply role with bad configured service
+    block:
+      - name: Converge | Try to apply role with bad configured service
         include_role:
           name: consul_role
         vars:
@@ -57,16 +65,18 @@
             script: "command_dont_exists"
             interval: "60s"
     rescue:
-      - set_fact:
+      - name: Converge | Set fact role_error_service
+        set_fact:
           role_error_service: true
     always:
-    - name: Fail if no error raised
+    - name: Converge | Fail if no error raised
       fail:
         msg: "An error should've been raised by the role"
       when: role_error_service is not defined
 
-  - block:
-      - name: "Try to apply role with bad configured service with no sanity check"
+  - name: Converge | Block to apply role with bad configured service with no sanity check
+    block:
+      - name: Converge | Try to apply role with bad configured service with no sanity check
         include_role:
           name: consul_role
         vars:
@@ -76,10 +86,11 @@
             script: "command_dont_exists"
             interval: "60s"
     rescue:
-      - set_fact:
+      - name: Converge | Set fact role_error
+        set_fact:
           role_error: true
     always:
-    - name: Fail if no error raised
+    - name: Converge | Fail if no error raised
       fail:
         msg: "An error should've been raised by the role"
       when: role_error is defined

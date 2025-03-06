@@ -1,9 +1,12 @@
 ---
-- hosts: consulagent
+
+- name: Converge | Node exporter
+  hosts: consulagent
   roles:
     - node_exporter
 
-- hosts: consul
+- name: Converge | Consul
+  hosts: consul
   gather_facts: true
   roles:
     - rsyslog
