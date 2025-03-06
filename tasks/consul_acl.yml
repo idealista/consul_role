@@ -1,6 +1,6 @@
 ---
 - name: Consul | Add acl configuration master
-  template:
+  ansible.builtin.template:
     src: consul.master.j2
     dest: "{{ consul_configdir }}/master.json"
     owner: "{{ consul_user }}"
@@ -11,7 +11,7 @@
   when: consul_server
 
 - name: Consul | Add acl configuration client
-  template:
+  ansible.builtin.template:
     src: consul.client.j2
     dest: "{{ consul_configdir }}/client.json"
     owner: "{{ consul_user }}"
@@ -22,25 +22,25 @@
   when: consul_agent
 
 - name: Consul | ACLs system needs to be enabled prior to apply them
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers
   when: consul_acl  # This is to avoid triggering handlers unnecessarily
 
 - name: Consul | Install consul_acl prerequisites
-  apt:
+  ansible.builtin.apt:
     name: "{{ consul_acl_required_libs }}"
 
 - name: Consul | Install consul_acl Python prerequisites
-  pip:
+  ansible.builtin.pip:
     name: "{{ consul_acl_python_required_packages }}"
     virtualenv: "{{ consul_python_virtualenv_path if consul_python_virtualenv else omit }}"
 
 - name: Consul | Wait for Consul to start up
-  wait_for:
+  ansible.builtin.wait_for:
     port: "{{ consul_http_port }}"
     timeout: 60
 
 - name: Consul | Create ACL
-  consul_acl:
+  ansible.builtin.consul_acl:
     name: "{{ item.key }}"
     token_type: "{{ item.value.token_type }}"
     token: "{{ item.value.token }}"

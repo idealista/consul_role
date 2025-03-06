@@ -1,12 +1,12 @@
 ---
 - name: Consul | Service sanity healthcheck
-  include_tasks: service_healthcheck.yml
+  ansible.builtin.include_tasks: service_healthcheck.yml
   when: consul_service_sanity_healthcheck and (item.state is not defined or item.state != "absent")
   with_items:
     - "{{ consul_services_register }}"
 
 - name: Consul | Register services
-  consul:
+  community.general.consul:
     service_name: "{{ item.name }}"
     service_port: "{{ item.port | default (omit) }}"
     service_address: "{{ item.service_address | default (omit) }}"  # In case the service is not in the local host
@@ -27,7 +27,7 @@
 
 # Temporary, until consul state=absent is fixed
 - name: Consul | De-register services
-  uri:
+  ansible.builtin.uri:
     url: "http://localhost:{{ consul_http_port }}/v1/agent/service/deregister/{{ item.name }}"
     method: PUT
     headers:

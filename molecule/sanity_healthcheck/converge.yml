@@ -17,7 +17,7 @@
   - name: Converge | Block to apply role with not http or script parameters
     block:
     - name: Converge | Try to apply role with not http or script parameters
-      include_role:
+      ansible.builtin.include_role:
         name: consul_role
       vars:
         consul_services_register:
@@ -25,18 +25,18 @@
           port: 9100
     rescue:
       - name: Converge | Set fact role_error_params
-        set_fact:
+        ansible.builtin.set_fact:
           role_error_params: true
     always:
     - name: Converge | Fail if no error raised
-      fail:
+      ansible.builtin.fail:
         msg: "An error should've been raised by the role"
       when: role_error_params is not defined
 
   - name: Converge | Block to apply role with bad configured webservice
     block:
       - name: Converge | Try to apply role with bad configured webservice
-        include_role:
+        ansible.builtin.include_role:
           name: consul_role
         vars:
           consul_services_register:
@@ -46,18 +46,18 @@
             interval: "60s"
     rescue:
     - name: Converge | Set fact role_error_webservice
-      set_fact:
+      ansible.builtin.set_fact:
         role_error_webservice: true
     always:
     - name: Converge | Fail if no error raised
-      fail:
+      ansible.builtin.fail:
         msg: "An error should've been raised by the role"
       when: role_error_webservice is not defined
 
   - name: Converge | Block to apply role with bad configured service
     block:
       - name: Converge | Try to apply role with bad configured service
-        include_role:
+        ansible.builtin.include_role:
           name: consul_role
         vars:
           consul_services_register:
@@ -66,18 +66,18 @@
             interval: "60s"
     rescue:
       - name: Converge | Set fact role_error_service
-        set_fact:
+        ansible.builtin.set_fact:
           role_error_service: true
     always:
     - name: Converge | Fail if no error raised
-      fail:
+      ansible.builtin.fail:
         msg: "An error should've been raised by the role"
       when: role_error_service is not defined
 
   - name: Converge | Block to apply role with bad configured service with no sanity check
     block:
       - name: Converge | Try to apply role with bad configured service with no sanity check
-        include_role:
+        ansible.builtin.include_role:
           name: consul_role
         vars:
           consul_service_sanity_healthcheck: false
@@ -87,12 +87,10 @@
             interval: "60s"
     rescue:
       - name: Converge | Set fact role_error
-        set_fact:
+        ansible.builtin.set_fact:
           role_error: true
     always:
     - name: Converge | Fail if no error raised
-      fail:
+      ansible.builtin.fail:
         msg: "An error should've been raised by the role"
       when: role_error is defined
-
-
