@@ -8,13 +8,13 @@
 - name: Consul | Register services
   community.general.consul:
     service_name: "{{ item.name }}"
-    service_port: "{{ item.port | default (omit) }}"
-    service_address: "{{ item.service_address | default (omit) }}"  # In case the service is not in the local host
-    http: "{{ item.http | default (omit) }}"  # HTTP endpoint health check. Requires interval.
-    script: "{{ item.script | default (omit) }}"  # Script/command to check the health of the service. Requires interval.
-    interval: "{{ item.interval | default (omit) }}"  # Interval between checks.
-    tags: "{{ item.tags | default (omit) }}"
-    timeout: "{{ item.timeout | default (omit) }}"
+    service_port: "{{ item.port | default(omit) }}"
+    service_address: "{{ item.service_address | default(omit) }}"  # In case the service is not in the local host
+    http: "{{ item.http | default(omit) }}"  # HTTP endpoint health check. Requires interval.
+    script: "{{ item.script | default(omit) }}"  # Script/command to check the health of the service. Requires interval.
+    interval: "{{ item.interval | default(omit) }}"  # Interval between checks.
+    tags: "{{ item.tags | default(omit) }}"
+    timeout: "{{ item.timeout | default(omit) }}"
     token: "{{ consul_acl_agent_token }}"
   notify: Restart consul
   # We set this because of idempotency issues https://github.com/ansible/ansible-modules-extras/issues/1316
