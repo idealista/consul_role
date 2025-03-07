@@ -1,6 +1,7 @@
-ansible==6.3.0
-ansible-lint==6.5.1
-molecule==4.0.1
-molecule-docker==2.0.0
-docker==6.0.0
-rich==12.5.1
+ansible==2.9.27
+ansible-lint==4.2.0
+molecule==3.0.8
+docker==7.0.0
+requests<2.32.0
+jmespath==0.9.4
+lxml>4.5.0
