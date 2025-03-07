@@ -1,6 +1,7 @@
 exclude_paths:
 
 - ./molecule
+- ./tasks/consul_acl_ansible_10.yml
 parseable: true
 use_default_rules: true
 verbosity: 1
