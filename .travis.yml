@@ -1,7 +1,6 @@
 ---
 dist: focal
 language: python
-python: "3.12"
 os: linux
 services:
   - docker
@@ -11,12 +10,20 @@ before_install:
 install:
   - pip install -I pipenv
   - pipenv sync
-env:
-  jobs:
+jobs:
+  include:
+  - python: 3.9
+    env:
+      - MOLECULE_DISTRO=debian:buster-slim
+  - python: 3.9
+    env:
+      - MOLECULE_DISTRO=debian:stretch-slim
+  - python: 3.12
+    env:
     - MOLECULE_DISTRO=debian:bookworm-slim
+  - python: 3.12
+    env:
     - MOLECULE_DISTRO=debian:bullseye-slim
-    - MOLECULE_DISTRO=debian:buster-slim
-    - MOLECULE_DISTRO=debian:stretch-slim
 script:
   - pipenv run molecule test --all
 
