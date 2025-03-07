@@ -21,9 +21,20 @@
   tags:
     - service
 
+- name: Consul | Consul ACL (ansible 10)
+  ansible.builtin.include_tasks: consul_acl_ansible_10.yml
+  when:
+    - consul_acl
+    - ansible_version.string  is version("2.17.9", '>=')
+  tags:
+    - configure
+    - acl
+
 - name: Consul | Consul ACL
-  ansible.builtin.import_tasks: consul_acl.yml
-  when: consul_acl
+  ansible.builtin.include_tasks: consul_acl.yml
+  when:
+    - consul_acl
+    - ansible_version.string is version("2.17.9", '<')
   tags:
     - configure
     - acl
