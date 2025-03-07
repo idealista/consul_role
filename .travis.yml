@@ -7,23 +7,32 @@ services:
 before_install:
   - echo '{"default-cgroupns-mode":"host"}' | sudo tee /etc/docker/daemon.json
   - sudo systemctl restart docker
-install:
-  - pip install -I pipenv
-  - pipenv sync
 jobs:
   include:
   - python: 3.9
     env:
       - MOLECULE_DISTRO=debian:buster-slim
+    install:
+      - pip install pipenv
+      - pipenv sync
   - python: 3.9
     env:
       - MOLECULE_DISTRO=debian:stretch-slim
+    install:
+      - pip install pipenv
+      - pipenv sync
   - python: 3.12
     env:
-    - MOLECULE_DISTRO=debian:bookworm-slim
+      - MOLECULE_DISTRO=debian:bookworm-slim
+    install:
+      - pip install -I pipenv
+      - pipenv sync
   - python: 3.12
     env:
-    - MOLECULE_DISTRO=debian:bullseye-slim
+      - MOLECULE_DISTRO=debian:bullseye-slim
+    install:
+      - pip install -I pipenv
+      - pipenv sync
 script:
   - pipenv run molecule test --all
 
