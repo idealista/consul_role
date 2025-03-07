@@ -14,13 +14,15 @@ jobs:
       - MOLECULE_DISTRO=debian:buster-slim
     install:
       - pip install pipenv
-      - pipenv sync
+      - rm Pipfile
+      - pipenv install -r test-requirements-python-9.txt --skip-lock
   - python: 3.9
     env:
       - MOLECULE_DISTRO=debian:stretch-slim
     install:
       - pip install pipenv
-      - pipenv sync
+      - rm Pipfile
+      - pipenv install -r test-requirements-python-9.txt --skip-lock
   - python: 3.12
     env:
       - MOLECULE_DISTRO=debian:bookworm-slim
