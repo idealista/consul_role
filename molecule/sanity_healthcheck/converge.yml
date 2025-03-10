@@ -2,8 +2,8 @@
 - name: Converge | Apply roles to consulserver
   hosts: consulserver
   roles:
-    - rsyslog
-    - consul_role
+    - role: rsyslog
+    - role: "{{ 'idealista.consul_role' if (ansible_version.string  is version('2.17.9', '>=')) else 'consul_role' }}"
 
 - name: Converge | Apply rsyslog role to consulagent
   hosts: consulagent
@@ -18,7 +18,7 @@
     block:
     - name: Converge | Try to apply role with not http or script parameters
       ansible.builtin.include_role:
-        name: idealista.consul_role
+        name: "{{ 'idealista.consul_role' if (ansible_version.string  is version('2.17.9', '>=')) else 'consul_role' }}"
       vars:
         consul_services_register:
         - name: node exporter http
@@ -37,7 +37,7 @@
     block:
       - name: Converge | Try to apply role with bad configured webservice
         ansible.builtin.include_role:
-          name: idealista.consul_role
+          name: "{{ 'idealista.consul_role' if (ansible_version.string  is version('2.17.9', '>=')) else 'consul_role' }}"
         vars:
           consul_services_register:
           - name: node exporter http
@@ -58,7 +58,7 @@
     block:
       - name: Converge | Try to apply role with bad configured service
         ansible.builtin.include_role:
-          name: idealista.consul_role
+          name: "{{ 'idealista.consul_role' if (ansible_version.string  is version('2.17.9', '>=')) else 'consul_role' }}"
         vars:
           consul_services_register:
           - name: node exporter http
@@ -78,7 +78,7 @@
     block:
       - name: Converge | Try to apply role with bad configured service with no sanity check
         ansible.builtin.include_role:
-          name: idealista.consul_role
+          name: "{{ 'idealista.consul_role' if (ansible_version.string  is version('2.17.9', '>=')) else 'consul_role' }}"
         vars:
           consul_service_sanity_healthcheck: false
           consul_services_register:
