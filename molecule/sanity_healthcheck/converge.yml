@@ -3,7 +3,7 @@
   hosts: consulserver
   roles:
     - rsyslog
-    - idealista.consul_role
+    - consul_role
 
 - name: Converge | Apply rsyslog role to consulagent
   hosts: consulagent
