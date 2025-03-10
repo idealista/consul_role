@@ -10,7 +10,7 @@
   gather_facts: true
   roles:
     - role: rsyslog
-    - role: idealista.consul_role
+    - role: consul_role
   post_tasks:
     - name: Install net-tools for testing purposes
       ansible.builtin.apt:

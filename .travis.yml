@@ -16,6 +16,7 @@ jobs:
       - pip install pipenv
       - rm Pipfile
       - pipenv install -r test-requirements-python-9.txt --skip-lock
+      - pipenv run ansible-galaxy collection install community.general
   - python: 3.9
     env:
       - MOLECULE_DISTRO=debian:stretch-slim
@@ -23,6 +24,7 @@ jobs:
       - pip install pipenv
       - rm Pipfile
       - pipenv install -r test-requirements-python-9.txt --skip-lock
+      - pipenv run ansible-galaxy collection install community.general
   - python: 3.12
     env:
       - MOLECULE_DISTRO=debian:bookworm-slim
