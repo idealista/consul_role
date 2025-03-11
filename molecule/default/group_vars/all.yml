@@ -66,16 +66,4 @@ consul_acl_configuration_list:
       - service: ""
         policy: read
 
-## ACL for discovery synchronization between servers
-consul_acl_configuration_list_legacy:
-  - name: Agent
-    token_type: client
-    token: "{{ consul_acl_agent_token }}"
-    rules: node "" { policy = "write" } service "" { policy = "write" }
-  ## ACL for anonymous UI reading
-  - name: Anonymous Token
-    token_type: client
-    token: anonymous
-    rules: node "" { policy = "read" } service "" { policy = "read" } key "" { policy = "read" }
-
 node_exporter_private_tmp: false

@@ -103,13 +103,13 @@ consul_acl_agent_token: agent
 
 ## ACL for discovery synchronization between servers
 # Example for legacy versions
-# consul_acl_configuration_list_legacy:
-#   - name: Agent
+# consul_acl_configuration_list:
+#   Agent:
 #     token_type: client
 #     token: "{{ consul_acl_agent_token }}"
 #     rules: node "" { policy = "write" } service "" { policy = "write" }
 #   ## ACL for anonymous UI reading
-#   - name: Anonymous Token
+#   Anonymous Token
 #     token_type: client
 #     token: anonymous
 #     rules: node "" { policy = "read" } service "" { policy = "read" } key "" { policy = "read" }
