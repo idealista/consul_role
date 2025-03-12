@@ -127,29 +127,40 @@ consul_services_register:  # Example:
 #   http: "http://localhost:9100"
 #   interval: "60s"
 
-consul_required_python_libs:
-  - python-consul
-
 consul_url: "https://releases.hashicorp.com/consul/{{ consul_version }}/{{ consul_package }}"
 consul_package: "consul_{{ consul_version }}_linux_amd64.zip"
 
-consul_acl_required_libs:
-  - openssl
-  - "{{ consul_python_bin }}-pip"
-
-consul_acl_python_required_packages:
-  - pyhcl
-  - requests
-
-consul_required_libs:
-  - unzip
-  - ca-certificates
-  - "{{ consul_python_bin }}-pip"
-
-consul_virtualenv_required_libs:
-  - "{{ consul_python_bin }}-virtualenv"
-
 consul_python_bin: "{{ (ansible_python.version.major | int == 3) | ternary('python3', 'python') }}"
-consul_python_virtualenv: "{{ (hostvars[inventory_hostname].ansible_distribution_major_version | int >= 12) | ternary(true, false) }}"  # Set to true for installing and using virtualenvs. Default is true for Debian >= 12
-consul_python_virtualenv_name: idealista_consul_role
-consul_python_virtualenv_path: "{{ ansible_env.HOME }}/.virtualenvs/{{ consul_python_virtualenv_name }}"
+
+consul_apt_required_packages:
+  - "{{ consul_python_bin }}-pip"
+  - ca-certificates
+  - openssl
+  - unzip
+
+consul_python_pip_required_packages: "{{ consul_python_pip_required_packages_by_os[ansible_distribution ~'-' ~ansible_distribution_major_version] }}"
+consul_python_apt_required_packages: "{{ consul_python_apt_required_packages_by_os[ansible_distribution ~'-' ~ansible_distribution_major_version] }}"
+
+consul_python_apt_required_packages_by_os:
+  Debian-12:
+    - "{{ consul_python_bin }}-consul2"
+    - "{{ consul_python_bin }}-pyhcl"
+    - "{{ consul_python_bin }}-requests"
+  Debian-11:
+    - "{{ consul_python_bin }}-requests"
+  Debian-10:
+    - "{{ consul_python_bin }}-requests"
+  Debian-9:
+    - "{{ consul_python_bin }}-requests"
+
+consul_python_pip_required_packages_by_os:
+  Debian-12: []
+  Debian-11:
+    - python-consul
+    - pyhcl
+  Debian-10:
+    - python-consul
+    - pyhcl
+  Debian-9:
+    - python-consul
+    - pyhcl
