@@ -6,7 +6,7 @@
     - "{{ consul_services_register }}"
 
 - name: Consul | Register services
-  community.general.consul:
+  consul:
     service_name: "{{ item.name }}"
     service_port: "{{ item.port | default(omit) }}"
     service_address: "{{ item.service_address | default(omit) }}"  # In case the service is not in the local host
