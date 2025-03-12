@@ -1,6 +1,11 @@
 ---
 extends: default
 
+ignore: |
+  .travis.yml
+  molecule/
+  tests/
+
 rules:
   braces:
     max-spaces-inside: 1
@@ -10,8 +15,3 @@ rules:
     level: error
   line-length: disable
   truthy: disable
-
-ignore: |
-    venv/
-    tests/
-    molecule/

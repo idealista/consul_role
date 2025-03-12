@@ -1,39 +1,39 @@
 ---
 - name: Consul | Install dependencies
-  apt:
+  ansible.builtin.apt:
     pkg: "{{ consul_required_libs }}"
     update_cache: true
     cache_valid_time: 600
 
 - name: Consul | Install virtualenv dependencies
-  apt:
+  ansible.builtin.apt:
     pkg: "{{ consul_virtualenv_required_libs }}"
     update_cache: true
     cache_valid_time: 600
   when: consul_python_virtualenv
 
 - name: Consul | Create python virtualenv
-  command: "{{ consul_python_bin }} -m virtualenv {{ consul_python_virtualenv_path }}"
+  ansible.builtin.command: "{{ consul_python_bin }} -m virtualenv {{ consul_python_virtualenv_path }}"
   changed_when: false
   when: consul_python_virtualenv
 
 - name: Consul | Install python dependencies
-  pip:
+  ansible.builtin.pip:
     name: "{{ consul_required_python_libs }}"
     virtualenv: "{{ consul_python_virtualenv_path if consul_python_virtualenv else omit }}"
 
 - name: Consul | Ensure Consul group
-  group:
+  ansible.builtin.group:
     name: "{{ consul_group }}"
 
 - name: Consul | Ensure Consul user
-  user:
+  ansible.builtin.user:
     name: "{{ consul_user }}"
     group: "{{ consul_group }}"
     createhome: no
 
 - name: Consul | Ensure Consul skeleton path
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
     owner: "{{ consul_user }}"
@@ -46,7 +46,7 @@
     - "{{ consul_logdir }}"
 
 - name: Consul | Download and extract Consul
-  unarchive:
+  ansible.builtin.unarchive:
     src: "{{ consul_url }}"
     dest: "{{ consul_bindir }}"
     owner: "{{ consul_user }}"
@@ -55,7 +55,7 @@
   notify: Restart consul
 
 - name: Consul | Link binary
-  file:
+  ansible.builtin.file:
     src: "{{ consul_bindir }}/consul"
     dest: /usr/bin/consul
     state: link

@@ -1,0 +1,16 @@
+---
+
+- name: Consul | Create ACL (legacy)
+  consul_acl:
+    name: "{{ item.key }}"
+    token_type: "{{ item.value.token_type }}"
+    token: "{{ item.value.token }}"
+    rules: "{{ item.value.rules }}"
+    mgmt_token: "{{ consul_acl_master_token }}"
+    host: "{{ consul_server_nodes | first }}"
+  vars:
+    ansible_python_interpreter: "{{ consul_python_virtualenv_path + '/bin/python' if consul_python_virtualenv else consul_python_bin }}"
+  notify: Restart consul
+  with_dict: "{{ consul_acl_configuration_list }}"
+  no_log: true
+  tags: [acl_legacy]

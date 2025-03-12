@@ -17,5 +17,5 @@ consul_services_register:
     interval: "60s"
     timeout: "30s"
   - name: node exporter script
-    script: "pidof node_exporter"
+    script: "pgrep node_exporter"
     interval: "60s"

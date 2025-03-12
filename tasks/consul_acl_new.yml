@@ -1,0 +1,26 @@
+---
+
+- name: Consul | Create policies
+  community.general.consul_policy:
+    name: "{{ item.name }}"
+    rules: "{{ item.rules }}"
+    host: "{{ consul_server_nodes | first }}"
+    token: "{{ consul_acl_master_token }}"
+  notify: Restart consul
+  with_items: "{{ consul_acl_policies }}"
+  no_log: true
+  vars:
+    ansible_python_interpreter: "{{ consul_python_virtualenv_path + '/bin/python' if consul_python_virtualenv else consul_python_bin }}"
+
+- name: Consul | Create token
+  community.general.consul_token:
+    token: "{{ consul_acl_master_token }}"
+    accessor_id: "{{ item.accessor_id }}"
+    description: "{{ item.name }}"
+    policies: "{{ item.policies }}"
+    host: "{{ consul_server_nodes | first }}"
+  notify: Restart consul
+  with_items: "{{ consul_acl_tokens }}"
+  no_log: true
+  vars:
+    ansible_python_interpreter: "{{ consul_python_virtualenv_path + '/bin/python' if consul_python_virtualenv else consul_python_bin }}"

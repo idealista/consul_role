@@ -15,7 +15,6 @@ platforms:
     image: ${MOLECULE_DISTRO:-debian:bookworm-slim}
     networks:
       - name: consul_network
-    purge_networks: true
     stop_signal: 'RTMIN+3'
     privileged: false
     volumes:
@@ -38,7 +37,6 @@ platforms:
     image: ${MOLECULE_DISTRO:-debian:bookworm-slim}
     networks:
       - name: consul_network
-    purge_networks: true
     stop_signal: 'RTMIN+3'
     privileged: false
     tmpfs:
