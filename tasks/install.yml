@@ -1,26 +1,13 @@
 ---
-- name: Consul | Install dependencies
+- name: Consul | Install dependencies (APT)
   ansible.builtin.apt:
-    pkg: "{{ consul_required_libs }}"
+    pkg: "{{ consul_apt_required_packages + consul_python_apt_required_packages }}"
     update_cache: true
     cache_valid_time: 600
 
-- name: Consul | Install virtualenv dependencies
-  ansible.builtin.apt:
-    pkg: "{{ consul_virtualenv_required_libs }}"
-    update_cache: true
-    cache_valid_time: 600
-  when: consul_python_virtualenv
-
-- name: Consul | Create python virtualenv
-  ansible.builtin.command: "{{ consul_python_bin }} -m virtualenv {{ consul_python_virtualenv_path }}"
-  changed_when: false
-  when: consul_python_virtualenv
-
-- name: Consul | Install python dependencies
+- name: Consul | Install Python dependencies (PIP)
   ansible.builtin.pip:
-    name: "{{ consul_required_python_libs }}"
-    virtualenv: "{{ consul_python_virtualenv_path if consul_python_virtualenv else omit }}"
+    name: "{{ consul_python_pip_required_packages }}"
 
 - name: Consul | Ensure Consul group
   ansible.builtin.group:

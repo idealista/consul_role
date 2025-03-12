@@ -27,12 +27,11 @@
 
 - name: Consul | Install consul_acl prerequisites
   ansible.builtin.apt:
-    name: "{{ consul_acl_required_libs }}"
+    name: "{{ consul_python_apt_required_packages }}"
 
 - name: Consul | Install consul_acl Python prerequisites
   ansible.builtin.pip:
-    name: "{{ consul_acl_python_required_packages }}"
-    virtualenv: "{{ consul_python_virtualenv_path if consul_python_virtualenv else omit }}"
+    name: "{{ consul_python_pip_required_packages }}"
 
 - name: Consul | Wait for Consul to start up
   ansible.builtin.wait_for:
