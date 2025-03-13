@@ -1,6 +1,6 @@
 ---
 - name: Consul | Template out config
-  template:
+  ansible.builtin.template:
     src: "{{ consul_configuration_template_path }}"
     dest: "{{ consul_configdir }}/consul.json"
     owner: "{{ consul_user }}"
@@ -9,7 +9,7 @@
   notify: Restart consul
 
 - name: Consul | Copy rsyslog consul config
-  template:
+  ansible.builtin.template:
     src: rsyslog.d/consul.conf.j2
     dest: /etc/rsyslog.d/consul.conf
     trim_blocks: false
@@ -20,7 +20,7 @@
   when: consul_service_log_output == "syslog"
 
 - name: Consul | Copy consul.service file
-  template:
+  ansible.builtin.template:
     src: "{{ consul_service_template_path }}"
     dest: /etc/systemd/system/consul.service
     trim_blocks: false

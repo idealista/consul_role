@@ -1,5 +1,7 @@
 ---
-warn_list:
-  - 'fqcn-builtins'
+
 exclude_paths:
-  - molecule/default/tests
+  - ./molecule
+parseable: true
+use_default_rules: true
+verbosity: 1

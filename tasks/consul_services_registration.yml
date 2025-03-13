@@ -1,20 +1,20 @@
 ---
 - name: Consul | Service sanity healthcheck
-  include_tasks: service_healthcheck.yml
+  ansible.builtin.include_tasks: service_healthcheck.yml
   when: consul_service_sanity_healthcheck and (item.state is not defined or item.state != "absent")
   with_items:
     - "{{ consul_services_register }}"
 
 - name: Consul | Register services
-  consul:
+  ansible.builtin.consul:  # noqa fqcn[canonical]
     service_name: "{{ item.name }}"
-    service_port: "{{ item.port | default (omit) }}"
-    service_address: "{{ item.service_address | default (omit) }}"  # In case the service is not in the local host
-    http: "{{ item.http | default (omit) }}"  # HTTP endpoint health check. Requires interval.
-    script: "{{ item.script | default (omit) }}"  # Script/command to check the health of the service. Requires interval.
-    interval: "{{ item.interval | default (omit) }}"  # Interval between checks.
-    tags: "{{ item.tags | default (omit) }}"
-    timeout: "{{ item.timeout | default (omit) }}"
+    service_port: "{{ item.port | default(omit) }}"
+    service_address: "{{ item.service_address | default(omit) }}"  # In case the service is not in the local host
+    http: "{{ item.http | default(omit) }}"  # HTTP endpoint health check. Requires interval.
+    script: "{{ item.script | default(omit) }}"  # Script/command to check the health of the service. Requires interval.
+    interval: "{{ item.interval | default(omit) }}"  # Interval between checks.
+    tags: "{{ item.tags | default(omit) }}"
+    timeout: "{{ item.timeout | default(omit) }}"
     token: "{{ consul_acl_agent_token }}"
   notify: Restart consul
   # We set this because of idempotency issues https://github.com/ansible/ansible-modules-extras/issues/1316
@@ -22,12 +22,10 @@
   no_log: true
   with_items:
     - "{{ consul_services_register }}"
-  vars:
-    ansible_python_interpreter: "{{ consul_python_virtualenv_path + '/bin/python' if consul_python_virtualenv else consul_python_bin }}"
 
 # Temporary, until consul state=absent is fixed
 - name: Consul | De-register services
-  uri:
+  ansible.builtin.uri:
     url: "http://localhost:{{ consul_http_port }}/v1/agent/service/deregister/{{ item.name }}"
     method: PUT
     headers:

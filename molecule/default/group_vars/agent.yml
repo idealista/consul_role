@@ -7,15 +7,15 @@ consul_ui: true
 consul_enable_script_check: true
 
 consul_services_register:
-  - name: node exporter http home
+  - name: node_exporter_http_home
     port: 9100
     http: "http://localhost:9100"
     interval: "60s"
-  - name: node exporter http
+  - name: node_exporter_http
     port: 9100
     http: "http://localhost:9100/metrics"
     interval: "60s"
     timeout: "30s"
-  - name: node exporter script
-    script: "pidof node_exporter"
+  - name: node_exporter_script
+    script: "pgrep node_exporter"
     interval: "60s"

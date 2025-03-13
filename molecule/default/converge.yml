@@ -1,14 +1,17 @@
 ---
-- hosts: consulagent
+
+- name: Converge | Node exporter
+  hosts: consulagent
   roles:
     - node_exporter
 
-- hosts: consul
+- name: Converge | Consul
+  hosts: consul
   gather_facts: true
   roles:
-    - rsyslog
-    - consul_role
+    - role: rsyslog
+    - role: "{{ 'idealista.consul_role' if (ansible_version.string  is version('2.17.9', '>=')) else 'consul_role' }}"
   post_tasks:
     - name: Install net-tools for testing purposes
-      apt:
+      ansible.builtin.apt:
         name: net-tools

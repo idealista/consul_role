@@ -1,0 +1,24 @@
+---
+
+- name: Consul | Create policies
+  community.general.consul_policy:
+    name: "{{ item.name }}"
+    rules: "{{ item.rules }}"
+    host: "{{ consul_server_nodes | first }}"
+    token: "{{ consul_acl_master_token }}"
+  notify: Restart consul
+  with_items: "{{ consul_acl_policies }}"
+  no_log: true
+  tags: "{{ 'skip_ansible_lint' if consul_acl_use_legacy | bool else [] }}"
+
+- name: Consul | Create token
+  community.general.consul_token:
+    token: "{{ consul_acl_master_token }}"
+    accessor_id: "{{ item.accessor_id }}"
+    description: "{{ item.name }}"
+    policies: "{{ item.policies }}"
+    host: "{{ consul_server_nodes | first }}"
+  notify: Restart consul
+  with_items: "{{ consul_acl_tokens }}"
+  no_log: true
+  tags: "{{ 'skip_ansible_lint' if consul_acl_use_legacy | bool else [] }}"

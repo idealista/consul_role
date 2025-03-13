@@ -1,6 +1,6 @@
 ---
 - name: Consul | Check verify healthcheck parameters
-  fail:
+  ansible.builtin.fail:
     msg: "Service {{ item.name }} must have set 'http' or 'script' fields."
   when: "item.http is not defined and item.script is not defined"
 
@@ -8,12 +8,12 @@
   block:
     - name: Consul | Check that web server is available
       vars:
-        timeout: "{{ item.timeout | default(omit) }}"
+        timeout: "{{ item.timeout | default(omit) }}"  # noqa var-naming[no-reserved]
         timeout_unit: "{{ timeout[-1] }}"
         timeout_has_suffix: "{{ timeout_unit in ['s', 'm'] }}"
         timeout_seconds: "{{ timeout[:-1] }}"
         timeout_minutes: "{{ timeout[:-1] | int * 60 }}"
-      uri:
+      ansible.builtin.uri:
         url: "{{ item.http }}"
         timeout: "{{ (timeout if not timeout_has_suffix else (timeout_seconds if timeout_unit == 's' else timeout_minutes)) }}"
         return_content: no
@@ -21,7 +21,7 @@
       when: "item.http is defined"
 
     - name: Consul | Check that command exits successfully
-      command: "{{ item.script }}"
+      ansible.builtin.command: "{{ item.script }}"
       register: service_healthy
       failed_when: service_healthy.rc != 0
       changed_when: false
@@ -29,5 +29,5 @@
 
   rescue:
     - name: Consul | Healthcheck test failed
-      fail:
+      ansible.builtin.fail:
         msg: 'Healthcheck for {{ item.name }} fails. Verify that the service is properly installed or that consul_services_register parameters are correct.'

@@ -1,6 +1,6 @@
 ---
 - name: Register systemd service
-  systemd:
+  ansible.builtin.systemd:
     name: consul
     enabled: true
     daemon_reload: true

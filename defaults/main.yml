@@ -40,7 +40,7 @@ consul_datadir: "{{ consul_basedir }}/data"
 consul_domain: consul
 consul_datacenter: main
 consul_interface: "{{ ansible_default_ipv4.alias }}"
-consul_ip: "{{ hostvars[ansible_nodename]['ansible_' +consul_interface]['ipv4']['address'] }}"
+consul_ip: "{{ hostvars[ansible_nodename]['ansible_' + consul_interface]['ipv4']['address'] }}"
 consul_http_port: 8500
 consul_dns_port: 8600
 consul_grpc_port: 8502
@@ -58,6 +58,7 @@ consul_enable_script_check: false
 
 # ACLs #
 consul_acl: false
+consul_acl_use_legacy: true
 consul_acl_datacenter: "{{ consul_datacenter }}"
 consul_acl_default_policy: allow
 consul_acl_down_policy: extend-cache
@@ -66,17 +67,53 @@ consul_acl_down_policy: extend-cache
 consul_acl_master_token: master
 consul_acl_agent_token: agent
 
+# ACL policies examnple
+# consul_acl_policies:
+#   - name: agent
+#     rules: |
+#       node "" {
+#         policy = "write"
+#       }
+#       service "" {
+#         policy = "write"
+#       }
+#   - name: anonymous
+#     rules: |
+#       key "" {
+#         policy = "read"
+#       }
+#       node "" {
+#         policy = "read"
+#       }
+#       service "" {
+#         policy = "read"
+#       }
+
+# ACL tokens example
+# consul_acl_tokens:
+#   - name: Agent
+#     accessor_id: 972f8a50-9864-89fc-7db9-aadaafeaf538
+#     policies:
+#       - name: agent
+#   ## ACL for anonymous UI reading
+#   - name: Anonymous Token
+#     accessor_id: 738ffff3-b313-e678-ad9a-fbd324afd5c4
+#     policies:
+#       - name: anonymous
+
 ## ACL for discovery synchronization between servers
-# Example
+# Example for legacy versions
 # consul_acl_configuration_list:
 #   Agent:
 #     token_type: client
 #     token: "{{ consul_acl_agent_token }}"
-#     rules:
-#       - node: ""
-#         policy: write
-#       - service: ""
-#         policy: read
+#     rules: node "" { policy = "write" } service "" { policy = "write" }
+#   ## ACL for anonymous UI reading
+#   Anonymous Token
+#     token_type: client
+#     token: anonymous
+#     rules: node "" { policy = "read" } service "" { policy = "read" } key "" { policy = "read" }
+
 
 # Consul Connect #
 consul_connect_enabled: false
@@ -90,29 +127,40 @@ consul_services_register:  # Example:
 #   http: "http://localhost:9100"
 #   interval: "60s"
 
-consul_required_python_libs:
-  - python-consul
-
 consul_url: "https://releases.hashicorp.com/consul/{{ consul_version }}/{{ consul_package }}"
 consul_package: "consul_{{ consul_version }}_linux_amd64.zip"
 
-consul_acl_required_libs:
-  - openssl
-  - "{{ consul_python_bin }}-pip"
-
-consul_acl_python_required_packages:
-  - pyhcl
-  - requests
-
-consul_required_libs:
-  - unzip
-  - ca-certificates
-  - "{{ consul_python_bin }}-pip"
-
-consul_virtualenv_required_libs:
-  - "{{ consul_python_bin }}-virtualenv"
-
 consul_python_bin: "{{ (ansible_python.version.major | int == 3) | ternary('python3', 'python') }}"
-consul_python_virtualenv: "{{ (hostvars[inventory_hostname].ansible_distribution_major_version | int >= 12) | ternary(true, false) }}"  # Set to true for installing and using virtualenvs. Default is true for Debian >= 12
-consul_python_virtualenv_name: idealista_consul_role
-consul_python_virtualenv_path: "{{ ansible_env.HOME }}/.virtualenvs/{{ consul_python_virtualenv_name }}"
+
+consul_apt_required_packages:
+  - "{{ consul_python_bin }}-pip"
+  - ca-certificates
+  - openssl
+  - unzip
+
+consul_python_pip_required_packages: "{{ consul_python_pip_required_packages_by_os[ansible_distribution ~'-' ~ansible_distribution_major_version] }}"
+consul_python_apt_required_packages: "{{ consul_python_apt_required_packages_by_os[ansible_distribution ~'-' ~ansible_distribution_major_version] }}"
+
+consul_python_apt_required_packages_by_os:
+  Debian-12:
+    - "{{ consul_python_bin }}-consul2"
+    - "{{ consul_python_bin }}-pyhcl"
+    - "{{ consul_python_bin }}-requests"
+  Debian-11:
+    - "{{ consul_python_bin }}-requests"
+  Debian-10:
+    - "{{ consul_python_bin }}-requests"
+  Debian-9:
+    - "{{ consul_python_bin }}-requests"
+
+consul_python_pip_required_packages_by_os:
+  Debian-12: []
+  Debian-11:
+    - python-consul
+    - pyhcl
+  Debian-10:
+    - python-consul
+    - pyhcl
+  Debian-9:
+    - python-consul
+    - pyhcl
