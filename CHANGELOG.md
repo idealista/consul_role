@@ -5,11 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## Unreleased
 
-## [1.11.0](https://github.com/idealista/consul_role/tree/1.11.0) (2025-03-10)
+## [1.11.0](https://github.com/idealista/consul_role/tree/1.11.0) (2025-03-12)
 ### [Full Changelog](https://github.com/idealista/consul_role/compare/1.10.1...1.11.0)
 ### Changed
-- *[#104] (https://github.com/idealista/consul_role/issues/104) Maintain compatibility with legacy consul ACLs* @ultraheroe
+- *[#104](https://github.com/idealista/consul_role/issues/104) Maintain compatibility with legacy consul ACLs* @ultraheroe
 ### Fixed
+- *[#106](https://github.com/idealista/consul_role/issues/106) Remove virtualenvs by installing some Python dependencies via APT* @ommarmol
 ### Deprecated
 ### Added
 

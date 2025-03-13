@@ -8,7 +8,7 @@
   block:
     - name: Consul | Check that web server is available
       vars:
-        timeout: "{{ item.timeout | default(omit) }}"
+        timeout: "{{ item.timeout | default(omit) }}"  # noqa var-naming[no-reserved]
         timeout_unit: "{{ timeout[-1] }}"
         timeout_has_suffix: "{{ timeout_unit in ['s', 'm'] }}"
         timeout_seconds: "{{ timeout[:-1] }}"
