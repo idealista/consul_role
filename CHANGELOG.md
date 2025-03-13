@@ -10,7 +10,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ### Changed
 - *[#104](https://github.com/idealista/consul_role/issues/104) Maintain compatibility with legacy consul ACLs* @ultraheroe
 ### Fixed
-- *[#106](https://github.com/idealista/consul_role/issues/106) Remove virtualenvs by installing some Python dependencies via APT * @ommarmol
+- *[#106](https://github.com/idealista/consul_role/issues/106) Remove virtualenvs by installing some Python dependencies via APT* @ommarmol
 ### Deprecated
 ### Added
 
