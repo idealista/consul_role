@@ -40,14 +40,14 @@
 
 - name: Consul | Create ACLs
   ansible.builtin.include_tasks: consul_acl_new.yml
-  when: not consul_acl_use_legacy
+  when: not consul_acl_use_legacy | bool
   tags:
     - configure
     - acl
 
 - name: Consul | Create ACLs (legacy)
   ansible.builtin.include_tasks: consul_acl_legacy.yml
-  when: consul_acl_use_legacy
+  when: consul_acl_use_legacy | bool
   tags:
     - configure
     - acl_legacy
