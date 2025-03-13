@@ -9,7 +9,7 @@ before_install:
   - sudo systemctl restart docker
 jobs:
   include:
-  - &python-3.9
+  - &python-3_9
     python: 3.9
     install:
       - pip install pipenv
@@ -17,23 +17,23 @@ jobs:
       - pipenv install -r test-requirements-python-9.txt --skip-lock
     env:
       - MOLECULE_DISTRO=debian:bookworm-slim
-  - <<: *python-3.9
+  - <<: *python-3_9
     env:
       - MOLECULE_DISTRO=debian:bullseye-slim
-  - <<: *python-3.9
+  - <<: *python-3_9
     env:
       - MOLECULE_DISTRO=debian:buster-slim
-  - <<: *python-3.9
+  - <<: *python-3_9
     env:
       - MOLECULE_DISTRO=debian:stretch-slim
-  - &python-3.12
+  - &python-3_12
     python: 3.12
     install:
       - pip install -I pipenv
       - pipenv sync
     env:
       - MOLECULE_DISTRO=debian:bookworm-slim
-  - <<: *python-3.12
+  - <<: *python-3_12
     env:
       - MOLECULE_DISTRO=debian:bullseye-slim
 script:
