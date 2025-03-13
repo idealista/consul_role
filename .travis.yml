@@ -31,6 +31,8 @@ jobs:
     install:
       - pip install -I pipenv
       - pipenv sync
+      - pipenv run ansible-lint .
+      - pipenv run yamllint .
     env:
       - MOLECULE_DISTRO=debian:bookworm-slim
   - <<: *python-3_12

@@ -9,6 +9,7 @@
   notify: Restart consul
   with_items: "{{ consul_acl_policies }}"
   no_log: true
+  tags: "{{ 'skip_ansible_lint' if consul_acl_use_legacy | bool else [] }}"
 
 - name: Consul | Create token
   community.general.consul_token:
@@ -20,3 +21,4 @@
   notify: Restart consul
   with_items: "{{ consul_acl_tokens }}"
   no_log: true
+  tags: "{{ 'skip_ansible_lint' if consul_acl_use_legacy | bool else [] }}"
