@@ -1,0 +1,34 @@
+# Molecule managed
+
+{% if item.registry is defined %}
+FROM {{ item.registry.url }}/{{ item.image }}
+{% else %}
+FROM {{ item.image }}
+{% endif %}
+
+# install minimal packages for debian slim images
+{% set python = "python" %}
+{% if item.image is regex('stretch') %}
+    {% set distro = "stretch" %}
+{% elif item.image is regex('(bullseye|bookworm)') %}
+    {% set python = "python3" %}
+{% endif %}
+
+{% if distro is defined %}
+RUN rm /etc/apt/sources.list.d/* || true
+RUN echo "deb http://archive.debian.org/debian/ {{ distro }} main contrib non-free" > /etc/apt/sources.list && \
+    echo "deb-src http://archive.debian.org/debian/ {{ distro }} main contrib non-free" >> /etc/apt/sources.list && \
+    echo "deb http://archive.debian.org/debian-security {{ distro }}/updates main contrib non-free" >> /etc/apt/sources.list && \
+    echo "deb-src http://archive.debian.org/debian-security {{ distro }}/updates main contrib non-free" >> /etc/apt/sources.list && \
+    echo "deb http://archive.debian.org/debian/ {{ distro }}-backports main contrib non-free" >> /etc/apt/sources.list && \
+    echo "deb-src http://archive.debian.org/debian/ {{ distro }}-backports main contrib non-free" >> /etc/apt/sources.list && \
+    apt-get update && \
+{% else %}
+RUN apt-get update && \
+{% endif %}
+    apt-get install -y --force-yes {{ python }} sudo bash ca-certificates iproute2 systemd systemd-sysv procps && \
+    apt-get clean
+
+# https://github.com/moby/moby/issues/28614#issuecomment-310581026
+STOPSIGNAL SIGRTMIN+3
+RUN systemctl set-default multi-user.target
