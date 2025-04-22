@@ -8,6 +8,7 @@ consul_nodename: "{{ ansible_nodename }}"
 consul_service_private_tmp: "{{ private_tmp_service | default(false) }}"
 
 consul_force_install: false
+consul_uninstall: false
 
 # Maximum number of files limit
 consul_max_files: 32768

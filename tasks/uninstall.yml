@@ -1,0 +1,55 @@
+---
+
+- name: Consul | Leave consul cluser
+  ansible.builtin.shell: "{{ consul_bindir }}/consul leave -token={{ consul_acl_master_token }}"
+  changed_when: false
+
+- name: Consul | Stop and disable consul service
+  ansible.builtin.systemd:
+    name: consul
+    state: stopped
+    enabled: no
+    daemon_reload: yes
+
+- name: Consul | Remove consul service
+  ansible.builtin.file:
+    path: /etc/systemd/system/consul.service
+    state: absent
+
+- name: Consul | Reload systemd
+  ansible.builtin.systemd:
+    daemon_reload: yes
+
+- name: Consul | Remove base dir
+  ansible.builtin.file:
+    path: "{{ consul_basedir }}"
+    state: absent
+
+- name: Consul | Remove rsyslog consul config
+  ansible.builtin.file:
+    path: /etc/rsyslog.d/consul.conf
+    state: absent
+  notify: Restart rsyslog
+  when: consul_service_log_output == "syslog"
+
+- name: Consul | Remove symlink
+  ansible.builtin.file:
+    path: /usr/bin/consul
+    state: absent
+
+- name: Consul | Remove logdir
+  ansible.builtin.file:
+    path: "{{ consul_logdir }}"
+    state: absent
+
+- name: Consul | Remove Consul user
+  ansible.builtin.user:
+    name: "{{ consul_user }}"
+    group: "{{ consul_group }}"
+    createhome: no
+    state: absent
+
+- name: Consul | Remove Consul group
+  ansible.builtin.group:
+    name: "{{ consul_group }}"
+    state: absent
