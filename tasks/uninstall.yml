@@ -1,7 +1,7 @@
 ---
 
 - name: Consul | Leave consul cluser
-  ansible.builtin.shell: "{{ consul_bindir }}/consul leave -token={{ consul_acl_master_token }}"
+  ansible.builtin.command: "{{ consul_bindir }}/consul leave -token={{ consul_acl_master_token }}"
   changed_when: false
 
 - name: Consul | Stop and disable consul service
