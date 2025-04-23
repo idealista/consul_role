@@ -9,28 +9,40 @@
   ansible.builtin.import_tasks: install.yml
   tags:
     - install
-  when: consul_installed_version.rc != 0 or consul_force_install or consul_version not in consul_installed_version.stdout
+  when:
+    - consul_installed_version.rc != 0 or consul_force_install or consul_version not in consul_installed_version.stdout
+    - not consul_uninstall
 
 - name: Consul | Configure
   ansible.builtin.import_tasks: config.yml
   tags:
     - configure
+  when: not consul_uninstall
 
 - name: Consul | Service
   ansible.builtin.import_tasks: service.yml
   tags:
     - service
+  when: not consul_uninstall
 
 - name: Consul | Consul ACL
   ansible.builtin.include_tasks: consul_acl.yml
-  when: consul_acl
+  when: consul_acl and not consul_uninstall
   tags:
     - configure
     - acl
 
 - name: Consul | Consul services registration
   ansible.builtin.import_tasks: consul_services_registration.yml
-  when: consul_agent_services and consul_agent
+  when: consul_agent_services and consul_agent and not consul_uninstall
   tags:
     - configure
     - services
+
+- name: Consul | Uninstall
+  ansible.builtin.import_tasks: uninstall.yml
+  tags:
+    - uninstall
+  when:
+    - consul_uninstall
+    - not consul_installed_version.failed

@@ -1,0 +1,52 @@
+service:
+  consul:
+    enabled: true
+    running: true
+
+file:
+  /opt/consul:
+    exists: true
+    filetype: directory
+    mode: "0755"
+    owner: consul
+    group: consul
+  /usr/bin/consul:
+    exists: true
+    filetype: symlink
+    linked-to: /opt/consul/bin/consul
+  /var/log/consul/consul.log:
+    exists: true
+
+user:
+  consul:
+    exists: true
+    groups:
+      - consul
+
+group:
+  consul:
+    exists: true
+
+port:
+  tcp:8300:
+    listening: true
+  tcp6:8500:
+    listening: true
+  tcp6:8600:
+    listening: true
+
+http:
+  http://localhost:8500/v1/acl/list:
+    status: 403
+  http://localhost:8500/v1/acl/list?token=master:
+    status: 200
+  http://localhost:8500/v1/catalog/node/consulagent:
+    status: 200
+    body:
+      - /^null$/
+
+command:
+  consul --version| head -n 1:
+    exit-status: 0
+    stdout:
+      - Consul v{{ consul_version }}
