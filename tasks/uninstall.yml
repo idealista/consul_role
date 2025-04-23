@@ -32,6 +32,11 @@
   notify: Restart rsyslog
   when: consul_service_log_output == "syslog"
 
+- name: Consul | Remove logrotate consul config
+  ansible.builtin.file:
+    path: /etc/logrotate.d/consul
+    state: absent
+
 - name: Consul | Remove symlink
   ansible.builtin.file:
     path: /usr/bin/consul
