@@ -65,6 +65,11 @@ To uninstall just set:
 ```yml
 consul_uninstall: true
 ```
+Keep in mind that the following files will be removed when uninstalling:
+```
+/etc/rsyslog.d/consul.conf
+/etc/logrotate.d/consul
+```
 
 ## Testing
 
