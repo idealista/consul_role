@@ -1,0 +1,21 @@
+---
+consul_agent: true
+# for goss testing
+consul_server: false
+consul_agent_services: true
+consul_ui: true
+consul_enable_script_check: true
+
+consul_services_register:
+  - name: node_exporter_http_home
+    port: 9100
+    http: "http://localhost:9100"
+    interval: "60s"
+  - name: node_exporter_http
+    port: 9100
+    http: "http://localhost:9100/metrics"
+    interval: "60s"
+    timeout: "30s"
+  - name: node_exporter_script
+    script: "pgrep node_exporter"
+    interval: "60s"

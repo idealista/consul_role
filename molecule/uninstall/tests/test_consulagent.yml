@@ -1,0 +1,34 @@
+service:
+  consul:
+    enabled: false
+    running: false
+
+file:
+  /opt/consul:
+    exists: false
+    filetype: directory
+    mode: "0755"
+    owner: consul
+    group: consul
+  /usr/bin/consul:
+    exists: false
+    filetype: symlink
+    linked-to: /opt/consul/bin/consul
+  /var/log/consul/consul.log:
+    exists: false
+
+user:
+  consul:
+    exists: false
+    groups:
+      - consul
+
+group:
+  consul:
+    exists: false
+
+port:
+  tcp6:8500:
+    listening: false
+  tcp6:8600:
+    listening: false

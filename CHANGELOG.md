@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## Unreleased
 
+## [1.12.0](https://github.com/idealista/consul_role/tree/1.12.0) (2025-04-23)
+### [Full Changelog](https://github.com/idealista/consul_role/compare/1.11.0...1.12.0)
+### Added
+- *[#106](https://github.com/idealista/consul_role/issues/109) Add support to uninstall Consul* @ommarmol
+### Fixed
+### Deprecated
+### Added
+
 ## [1.11.0](https://github.com/idealista/consul_role/tree/1.11.0) (2025-03-12)
 ### [Full Changelog](https://github.com/idealista/consul_role/compare/1.10.1...1.11.0)
 ### Changed

@@ -1,0 +1,62 @@
+---
+dependency:
+  name: galaxy
+
+driver:
+  name: docker
+
+lint: |
+  yamllint .
+  ansible-lint .
+
+platforms:
+  - name: consulserver
+    hostname: consulserver
+    image: ${MOLECULE_DISTRO:-debian:bookworm-slim}
+    networks:
+      - name: consul_network
+    stop_signal: 'RTMIN+3'
+    privileged: false
+    volumes:
+      - '/sys/fs/cgroup:/sys/fs/cgroup'
+    tmpfs:
+      - '/tmp'
+      - /run
+      - /run/lock
+    capabilities:
+      - SYS_ADMIN
+    published_ports:
+      - "8500:8500"
+    groups:
+      - consul
+      - server
+    command: '/lib/systemd/systemd'
+
+  - name: consulagent
+    hostname: consulagent
+    image: ${MOLECULE_DISTRO:-debian:bookworm-slim}
+    networks:
+      - name: consul_network
+    stop_signal: 'RTMIN+3'
+    privileged: false
+    tmpfs:
+      - '/tmp'
+      - /run
+      - /run/lock
+    volumes:
+      - '/sys/fs/cgroup:/sys/fs/cgroup'
+    capabilities:
+      - SYS_ADMIN
+    groups:
+      - consul
+      - agent
+    command: '/lib/systemd/systemd'
+
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+scenario:
+  name: uninstall
+verifier:
+  name: ansible

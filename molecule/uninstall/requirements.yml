@@ -1,0 +1,8 @@
+---
+- src: https://github.com/idealista/prometheus_node_exporter_role.git
+  version: 6.1.0
+  name: node_exporter
+
+- src: https://github.com/idealista/rsyslog_role.git
+  version: 2.2.2
+  name: rsyslog
